@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — GrowEdge</title>
+<meta name="description" content="Practical digital marketing tips and insights from GrowEdge.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<script>
+tailwind.config={darkMode:'class',theme:{extend:{fontFamily:{sans:['"Plus Jakarta Sans"','sans-serif'],display:['"Space Grotesk"','sans-serif']},colors:{primary:'rgb(var(--p) / <alpha-value>)',primaryd:'rgb(var(--pd) / <alpha-value>)',ink:'#070b0a'}}}}
+</script>
+<style>
+:root{--p:16 185 129;--pd:5 150 105}
+[data-theme="blue"]{--p:59 130 246;--pd:37 99 235}
+[data-theme="purple"]{--p:139 92 246;--pd:109 40 217}
+[data-theme="orange"]{--p:249 115 22;--pd:234 88 12}
+[data-theme="pink"]{--p:236 72 153;--pd:219 39 119}
+[data-theme="red"]{--p:239 68 68;--pd:220 38 38}
+body{transition:background-color .3s,color .3s}
+.glow{box-shadow:0 10px 40px -10px rgb(var(--p)/.55)}
+.card{background:rgb(248 250 252);border:1px solid rgb(226 232 240);transition:all .3s}
+.dark .card{background:rgb(255 255 255/.04);border-color:rgb(255 255 255/.09)}
+.card:hover{border-color:rgb(var(--p)/.6)}
+.swatch{width:26px;height:26px;border-radius:9999px;border:2px solid transparent;transition:transform .2s}
+.swatch:hover{transform:scale(1.2)}
+.swatch.active{border-color:#fff;box-shadow:0 0 0 2px rgb(var(--p))}
+.prose-body p{margin-top:1.1rem;line-height:1.85}
+.prose-body h2{margin-top:2.2rem;font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;color:rgb(15 23 42)}
+.dark .prose-body h2{color:#fff}
+.prose-body ul{margin-top:1.1rem;display:grid;gap:.7rem}
+.prose-body li{display:flex;gap:.75rem;line-height:1.7}
+.prose-body li:before{content:"\f00c";font-family:"Font Awesome 6 Free";font-weight:900;color:rgb(var(--p));font-size:.8rem;margin-top:.3rem}
+.prose-body blockquote{margin-top:1.8rem;padding:1.2rem 1.5rem;border-left:4px solid rgb(var(--p));background:rgb(var(--p)/.08);border-radius:0 1rem 1rem 0;font-weight:600;color:rgb(15 23 42)}
+.dark .prose-body blockquote{color:#fff}
+::-webkit-scrollbar{width:8px}::-webkit-scrollbar-thumb{background:rgb(var(--p)/.6);border-radius:8px}
+</style>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2310b981'/%3E%3Cpath d='M14 44l13-13 9 9 14-16' fill='none' stroke='white' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M40 24h10v10' fill='none' stroke='white' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#10b981">
+</head>
+<body class="font-sans bg-white text-slate-600 dark:bg-ink dark:text-slate-400 antialiased overflow-x-hidden">
+
+<!-- ================= NAVBAR ================= -->
+<header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 h-[72px] flex items-center justify-between">
+<a href="index.html" class="flex items-center gap-2 font-display text-2xl font-bold text-slate-900 dark:text-white">
+<span class="w-10 h-10 rounded-xl bg-primary text-white grid place-items-center glow"><i class="fa-solid fa-arrow-trend-up text-lg"></i></span>
+Grow<span class="text-primary">Edge</span>
+</a>
+<nav class="hidden lg:flex items-center gap-7 text-sm font-semibold">
+<a href="index.html#home" class="hover:text-primary transition">Home</a>
+<a href="index.html#about" class="hover:text-primary transition">About</a>
+<a href="index.html#services" class="hover:text-primary transition">Services</a>
+<a href="index.html#demo" class="hover:text-primary transition">Demo</a>
+<a href="index.html#pricing" class="hover:text-primary transition">Pricing</a>
+<a href="index.html#blog" class="text-primary">Blog</a>
+<a href="index.html#contact" class="hover:text-primary transition">Contact</a>
+</nav>
+<div class="flex items-center gap-3">
+<button id="modeBtn" aria-label="Toggle dark / light mode" class="w-10 h-10 rounded-xl card grid place-items-center text-slate-700 dark:text-slate-200"><i id="modeIcon" class="fa-solid fa-sun"></i></button>
+<a href="index.html#contact" class="hidden sm:inline-flex px-5 py-2.5 rounded-xl bg-primary text-white text-sm font-bold glow hover:bg-primaryd transition">Hire Me</a>
+<button id="menuBtn" aria-label="Menu" class="lg:hidden w-10 h-10 rounded-xl card grid place-items-center text-slate-700 dark:text-slate-200"><i class="fa-solid fa-bars"></i></button>
+</div>
+</div>
+<div id="mobileMenu" class="hidden lg:hidden mx-4 mb-3 rounded-2xl card p-4 backdrop-blur-xl bg-white/90 dark:bg-ink/90">
+<div class="grid grid-cols-2 gap-1 text-sm font-semibold">
+<a href="index.html#home" class="p-3 rounded-lg hover:bg-primary/10 hover:text-primary">Home</a>
+<a href="index.html#about" class="p-3 rounded-lg hover:bg-primary/10 hover:text-primary">About</a>
+<a href="index.html#services" class="p-3 rounded-lg hover:bg-primary/10 hover:text-primary">Services</a>
+<a href="index.html#demo" class="p-3 rounded-lg hover:bg-primary/10 hover:text-primary">Demo</a>
+<a href="index.html#pricing" class="p-3 rounded-lg hover:bg-primary/10 hover:text-primary">Pricing</a>
+<a href="index.html#blog" class="p-3 rounded-lg bg-primary/10 text-primary">Blog</a>
+<a href="index.html#contact" class="p-3 rounded-lg hover:bg-primary/10 hover:text-primary">Contact</a>
+</div>
+</div>
+</header>
+
+<!-- ================= THEME CHANGER ================= -->
+<div id="themeBox" class="fixed left-0 top-1/2 -translate-y-1/2 z-40 flex items-stretch -translate-x-[calc(100%-44px)] transition-transform duration-300">
+<div class="card !rounded-l-none rounded-r-2xl p-3 flex flex-col gap-3 backdrop-blur-xl bg-white/90 dark:bg-ink/90">
+<p class="text-[11px] font-bold uppercase tracking-widest text-slate-500">Theme</p>
+<div class="grid grid-cols-3 gap-2">
+<button class="swatch active" data-color="green" style="background:#10b981" aria-label="Green"></button>
+<button class="swatch" data-color="blue" style="background:#3b82f6" aria-label="Blue"></button>
+<button class="swatch" data-color="purple" style="background:#8b5cf6" aria-label="Purple"></button>
+<button class="swatch" data-color="orange" style="background:#f97316" aria-label="Orange"></button>
+<button class="swatch" data-color="pink" style="background:#ec4899" aria-label="Pink"></button>
+<button class="swatch" data-color="red" style="background:#ef4444" aria-label="Red"></button>
+</div>
+</div>
+<button id="themeToggle" aria-label="Open theme colours" class="w-11 self-start h-11 rounded-r-xl bg-primary text-white grid place-items-center glow"><i class="fa-solid fa-palette"></i></button>
+</div>
+
+<main>
+<!-- ================= POST HEADER ================= -->
+<section class="relative pt-32 pb-10 overflow-hidden">
+<div class="absolute -top-32 -left-32 w-[420px] h-[420px] rounded-full bg-primary/20 blur-[120px]"></div>
+<div class="absolute top-20 -right-32 w-[380px] h-[380px] rounded-full bg-primaryd/20 blur-[120px]"></div>
+<div class="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
+<nav class="flex items-center justify-center gap-2 text-xs font-semibold flex-wrap">
+<a href="index.html" class="hover:text-primary">Home</a><i class="fa-solid fa-chevron-right text-[9px]"></i>
+<a href="index.html#blog" class="hover:text-primary">Blog</a><i class="fa-solid fa-chevron-right text-[9px]"></i>
+<span id="crumb" class="text-primary"></span>
+</nav>
+<span id="pTag" class="inline-block mt-6 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold border border-primary/30"></span>
+<h1 id="pTitle" class="mt-5 font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-slate-900 dark:text-white"></h1>
+<div class="mt-6 flex items-center justify-center gap-x-6 gap-y-2 flex-wrap text-sm">
+<span class="flex items-center gap-2"><span class="w-8 h-8 rounded-full bg-primary text-white grid place-items-center text-xs font-bold">TA</span><b class="text-slate-800 dark:text-slate-200">Tanvir Ahmed</b></span>
+<span><i class="fa-regular fa-calendar mr-1 text-primary"></i><span id="pDate"></span></span>
+<span><i class="fa-regular fa-clock mr-1 text-primary"></i><span id="pRead"></span></span>
+</div>
+</div>
+</section>
+
+<!-- ================= POST BODY ================= -->
+<section class="pb-24">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<div class="relative max-w-5xl mx-auto h-64 sm:h-96 rounded-3xl overflow-hidden bg-gradient-to-br from-primary to-primaryd">
+<img id="pImg" src="" alt="" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'">
+</div>
+<div class="mt-12 grid lg:grid-cols-[1fr_340px] gap-12 max-w-6xl mx-auto">
+<article>
+<div id="pBody" class="prose-body"></div>
+
+<div class="mt-12 pt-8 border-t border-slate-200 dark:border-white/10 flex flex-wrap items-center justify-between gap-4">
+<div class="flex items-center gap-3 text-sm font-bold text-slate-800 dark:text-slate-200">Share:
+<a id="shFb" target="_blank" rel="noopener" aria-label="Share on Facebook" class="w-10 h-10 rounded-full card grid place-items-center hover:!bg-primary hover:text-white"><i class="fa-brands fa-facebook-f"></i></a>
+<a id="shIn" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="w-10 h-10 rounded-full card grid place-items-center hover:!bg-primary hover:text-white"><i class="fa-brands fa-linkedin-in"></i></a>
+<a id="shWa" target="_blank" rel="noopener" aria-label="Share on WhatsApp" class="w-10 h-10 rounded-full card grid place-items-center hover:!bg-primary hover:text-white"><i class="fa-brands fa-whatsapp"></i></a>
+<button id="shCopy" aria-label="Copy link" class="w-10 h-10 rounded-full card grid place-items-center hover:!bg-primary hover:text-white"><i class="fa-solid fa-link"></i></button>
+<span id="copied" class="hidden text-xs text-primary">Copied!</span>
+</div>
+</div>
+
+<div class="mt-8 card rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row gap-5 items-center sm:items-start text-center sm:text-left">
+<span class="w-20 h-20 shrink-0 rounded-full bg-gradient-to-br from-primary to-primaryd text-white grid place-items-center font-display text-2xl font-bold">TA</span>
+<div><p class="text-xs uppercase tracking-widest text-primary font-bold">Written by</p><h3 class="text-xl font-bold text-slate-900 dark:text-white">Tanvir Ahmed</h3><p class="mt-2 text-sm">Digital marketer with 8+ years of experience helping brands grow through SEO, paid ads and email funnels.</p></div>
+</div>
+
+<div class="mt-8 grid sm:grid-cols-2 gap-4">
+<a id="prevLink" href="#" class="card rounded-2xl p-5 block"><p class="text-xs"><i class="fa-solid fa-arrow-left mr-1"></i>Previous Post</p><p id="prevTitle" class="mt-1 font-bold text-slate-900 dark:text-white text-sm"></p></a>
+<a id="nextLink" href="#" class="card rounded-2xl p-5 block sm:text-right"><p class="text-xs">Next Post<i class="fa-solid fa-arrow-right ml-1"></i></p><p id="nextTitle" class="mt-1 font-bold text-slate-900 dark:text-white text-sm"></p></a>
+</div>
+</article>
+
+<!-- ================= SIDEBAR ================= -->
+<aside class="space-y-8 lg:sticky lg:top-28 self-start">
+<div class="card rounded-3xl p-6">
+<h3 class="font-bold text-lg text-slate-900 dark:text-white">Related Posts</h3>
+<div id="related" class="mt-5 space-y-5"></div>
+</div>
+<div class="card rounded-3xl p-6">
+<h3 class="font-bold text-lg text-slate-900 dark:text-white">Categories</h3>
+<div class="mt-4 flex flex-wrap gap-2 text-sm font-semibold">
+<span class="px-4 py-2 rounded-full bg-primary/10 text-primary">SEO</span>
+<span class="px-4 py-2 rounded-full bg-primary/10 text-primary">Social Media</span>
+<span class="px-4 py-2 rounded-full bg-primary/10 text-primary">Email</span>
+<span class="px-4 py-2 rounded-full bg-primary/10 text-primary">Paid Ads</span>
+</div>
+</div>
+<div class="rounded-3xl p-6 bg-gradient-to-br from-primary to-primaryd text-white glow">
+<h3 class="font-bold text-xl">Need help growing?</h3>
+<p class="mt-2 text-sm text-white/85">Get a free 30-minute strategy call and a clear plan for your business.</p>
+<a href="index.html#contact" class="mt-5 inline-block px-6 py-3 rounded-xl bg-white text-primary font-bold text-sm hover:bg-slate-100 transition">Book Free Call</a>
+</div>
+</aside>
+</div>
+</div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="border-t border-slate-200 dark:border-white/10 pt-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+<a href="index.html" class="flex items-center gap-2 font-display text-2xl font-bold text-slate-900 dark:text-white"><span class="w-10 h-10 rounded-xl bg-primary text-white grid place-items-center"><i class="fa-solid fa-arrow-trend-up"></i></span>Grow<span class="text-primary">Edge</span></a>
+<div class="flex gap-3">
+<a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full card grid place-items-center hover:!bg-primary hover:text-white"><i class="fa-brands fa-facebook-f"></i></a>
+<a href="#" aria-label="LinkedIn" class="w-10 h-10 rounded-full card grid place-items-center hover:!bg-primary hover:text-white"><i class="fa-brands fa-linkedin-in"></i></a>
+<a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full card grid place-items-center hover:!bg-primary hover:text-white"><i class="fa-brands fa-instagram"></i></a>
+<a href="#" aria-label="YouTube" class="w-10 h-10 rounded-full card grid place-items-center hover:!bg-primary hover:text-white"><i class="fa-brands fa-youtube"></i></a>
+</div>
+</div>
+<!-- COPYRIGHT -->
+<div class="mt-10 border-t border-slate-200 dark:border-white/10 py-6">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-sm">
+<p>&copy; <span id="year">2026</span> <b class="text-slate-900 dark:text-white">GrowEdge</b>. All rights reserved.</p>
+<p>Designed &amp; developed with <i class="fa-solid fa-heart text-primary"></i> by Tanvir Ahmed</p>
+</div>
+</div>
+</footer>
+
+<!-- ================= BACK TO TOP + PROGRESS RING ================= -->
+<button id="toTop" aria-label="Back to top" class="fixed right-5 bottom-5 z-50 w-14 h-14 rounded-full bg-white dark:bg-ink grid place-items-center opacity-0 pointer-events-none translate-y-4 transition-all duration-300 shadow-xl">
+<svg class="absolute inset-0 -rotate-90" viewBox="0 0 56 56">
+<circle cx="28" cy="28" r="25" fill="none" stroke-width="3.5" class="stroke-slate-200 dark:stroke-white/10"></circle>
+<circle id="ring" cx="28" cy="28" r="25" fill="none" stroke-width="3.5" stroke-linecap="round" style="stroke:rgb(var(--p));stroke-dasharray:157.08;stroke-dashoffset:157.08"></circle>
+</svg>
+<i class="fa-solid fa-arrow-up text-primary relative"></i>
+</button>
+
+<script>
+const root=document.documentElement;
+// ---------- Blog data (post id = ?id=1, 2 or 3) ----------
+const IMG=i=>`https://images.unsplash.com/photo-${i}?auto=format&fit=crop&w=1400&q=70`;
+const POSTS=[
+{id:1,tag:'SEO',img:'1460925895917-afdab827c52f',title:'7 SEO Mistakes That Quietly Kill Your Google Rankings',date:'Oct 12, 2026',read:'6 min read',
+body:`<p>Most websites don't fail at SEO because of one big problem. They fail because of several small ones that pile up silently. After auditing hundreds of sites, these are the seven mistakes I see again and again.</p>
+<h2>1. Slow page speed</h2><p>If your page takes more than three seconds to load, visitors leave before they read a single word, and Google notices. Compress images, use modern formats and remove scripts you don't need.</p>
+<h2>2. Targeting the wrong keywords</h2><p>High-volume keywords look attractive, but they rarely convert. Focus on terms that match what your buyer types when they are ready to act.</p>
+<h2>3. Thin or duplicate content</h2><p>Pages with a few generic lines don't rank. Every page should answer one question completely and better than the pages already on page one.</p>
+<blockquote>Rank for fewer keywords, but make sure every one of them can bring in a customer.</blockquote>
+<h2>4. Ignoring mobile users</h2><p>Most searches now happen on phones. Check that buttons are easy to tap, text is readable and nothing jumps around while loading.</p>
+<h2>5. Broken links and messy structure</h2><p>Dead links and missing internal links waste your authority. A quick monthly crawl keeps your site healthy.</p>
+<h2>6. Weak titles and descriptions</h2><p>Your title is your ad on Google. Put the main keyword first and write for humans, not robots.</p>
+<h2>7. No tracking</h2><p>Without Search Console and analytics you are guessing. Track clicks, rankings and leads so you know what to repeat.</p>
+<h2>Quick checklist</h2><ul><li>Pages load in under 3 seconds</li><li>One clear keyword per page</li><li>Every page has unique, useful content</li><li>Mobile layout tested on a real phone</li><li>Monthly check for broken links</li></ul>`},
+{id:2,tag:'Social Media',img:'1611162617213-7d7a39e9b1d7',title:'How to Plan 30 Days of Social Content in Just 2 Hours',date:'Oct 05, 2026',read:'5 min read',
+body:`<p>Posting every day feels impossible when you build content from scratch each morning. The fix is a system: plan once, create in batches and schedule ahead. Here is the exact process I use for clients.</p>
+<h2>Step 1: Pick 4 content pillars</h2><p>Choose four themes your audience cares about, for example education, behind the scenes, proof (results and reviews) and offers. Every post fits one pillar.</p>
+<h2>Step 2: Build a simple calendar</h2><p>Assign a pillar to each weekday. Monday is education, Wednesday is proof, Friday is an offer. Having a rhythm removes the daily "what do I post?" question.</p>
+<blockquote>Consistency beats perfection. A good post on time beats a perfect post that never goes out.</blockquote>
+<h2>Step 3: Batch your creation</h2><p>Write all captions in one sitting, then design all visuals in another. Switching tasks is what burns your time, not the work itself.</p>
+<h2>Step 4: Schedule and review</h2><p>Use a scheduling tool to queue the whole month. Every Friday, look at your top three posts and make more like them.</p>
+<h2>Your 2-hour plan</h2><ul><li>20 minutes: choose pillars and post ideas</li><li>40 minutes: write all captions</li><li>40 minutes: create visuals in a template</li><li>20 minutes: schedule everything</li></ul>`},
+{id:3,tag:'Email',img:'1488190211105-8b0e65b80b4e',title:'The 3 Email Flows Every Online Store Needs on Day One',date:'Sep 28, 2026',read:'7 min read',
+body:`<p>Email still returns more revenue per dollar than almost any other channel, but only when it runs automatically. Before you send a single newsletter, set up these three flows.</p>
+<h2>1. The welcome series</h2><p>New subscribers are most interested right after they sign up. Send three to four emails over a week: introduce your brand, share your best-selling products and offer a small first-order incentive.</p>
+<h2>2. The abandoned cart flow</h2><p>Most shoppers leave without buying. A short reminder within an hour, a second message after a day and a final nudge after three days can recover a surprising share of lost sales.</p>
+<blockquote>One abandoned cart flow can pay for your entire email tool, every single month.</blockquote>
+<h2>3. The win-back flow</h2><p>Customers who haven't bought in 60 to 90 days are slipping away. Remind them what they loved, show what's new and give them a reason to return.</p>
+<h2>Tips that make flows convert</h2><ul><li>Keep subject lines short and clear</li><li>Use one main button per email</li><li>Show real product photos and reviews</li><li>Test one change at a time</li></ul>
+<p>Set these up once, check the numbers monthly and improve slowly. That is how email becomes a quiet, reliable sales machine.</p>`}
+];
+
+// ---------- Render post chosen by ?id= ----------
+const qid=+new URLSearchParams(location.search).get('id')||1;
+const idx=Math.max(0,POSTS.findIndex(p=>p.id===qid));
+const P=POSTS[idx];
+const $=id=>document.getElementById(id);
+document.title=P.title+' — GrowEdge';
+$('crumb').textContent=P.tag;
+$('pTag').textContent=P.tag;
+$('pTitle').textContent=P.title;
+$('pDate').textContent=P.date;
+$('pRead').textContent=P.read;
+$('pImg').src=IMG(P.img);
+$('pImg').alt=P.title;
+$('pBody').innerHTML=P.body;
+const url=encodeURIComponent(location.href),ttl=encodeURIComponent(P.title);
+$('shFb').href='https://www.facebook.com/sharer/sharer.php?u='+url;
+$('shIn').href='https://www.linkedin.com/sharing/share-offsite/?url='+url;
+$('shWa').href='https://wa.me/?text='+ttl+'%20'+url;
+$('shCopy').addEventListener('click',()=>{
+(navigator.clipboard?navigator.clipboard.writeText(location.href):Promise.reject()).catch(()=>{}).finally(()=>{$('copied').classList.remove('hidden');setTimeout(()=>$('copied').classList.add('hidden'),1800)})});
+const prev=POSTS[(idx+POSTS.length-1)%POSTS.length],next=POSTS[(idx+1)%POSTS.length];
+$('prevLink').href='blog_single.html?id='+prev.id;$('prevTitle').textContent=prev.title;
+$('nextLink').href='blog_single.html?id='+next.id;$('nextTitle').textContent=next.title;
+$('related').innerHTML=POSTS.filter(p=>p.id!==P.id).map(p=>`<a href="blog_single.html?id=${p.id}" class="flex gap-4 group"><span class="relative w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-gradient-to-br from-primary to-primaryd"><img src="${IMG(p.img).replace('w=1400','w=200')}" alt="" loading="lazy" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'"></span><span><b class="block text-sm text-slate-900 dark:text-white leading-snug group-hover:text-primary transition">${p.title}</b><span class="text-xs mt-1 block">${p.date}</span></span></a>`).join('');
+$('year').textContent=new Date().getFullYear();
+
+// ---------- Dark / Light mode (always starts in dark on reload) ----------
+document.getElementById('modeBtn').addEventListener('click',()=>{
+const dark=root.classList.toggle('dark');
+$('modeIcon').className=dark?'fa-solid fa-sun':'fa-solid fa-moon'});
+
+// ---------- Theme colour changer (always starts in green on reload) ----------
+const themeBox=$('themeBox');
+$('themeToggle').addEventListener('click',()=>themeBox.classList.toggle('-translate-x-[calc(100%-44px)]'));
+const FAV={green:'#10b981',blue:'#3b82f6',purple:'#8b5cf6',orange:'#f97316',pink:'#ec4899',red:'#ef4444'};
+document.querySelectorAll('.swatch').forEach(btn=>btn.addEventListener('click',()=>{
+const c=btn.dataset.color;
+if(c==='green')root.removeAttribute('data-theme');else root.setAttribute('data-theme',c);
+document.querySelectorAll('.swatch').forEach(b=>b.classList.remove('active'));
+btn.classList.add('active');
+const svg="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='"+FAV[c]+"'/><path d='M14 44l13-13 9 9 14-16' fill='none' stroke='white' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/><path d='M40 24h10v10' fill='none' stroke='white' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/></svg>";
+document.querySelector('link[rel="icon"]').href='data:image/svg+xml,'+encodeURIComponent(svg);
+document.querySelector('meta[name="theme-color"]').content=FAV[c]}));
+
+// ---------- Mobile menu ----------
+const mm=$('mobileMenu');
+$('menuBtn').addEventListener('click',()=>mm.classList.toggle('hidden'));
+
+// ---------- Scroll: navbar, progress ring, back-to-top ----------
+const nav=$('navbar'),toTop=$('toTop'),ring=$('ring'),CIRC=157.08;
+function onScroll(){
+const y=window.scrollY,max=document.documentElement.scrollHeight-window.innerHeight;
+ring.style.strokeDashoffset=CIRC*(1-(max>0?Math.min(y/max,1):0));
+['bg-white/80','dark:bg-ink/80','backdrop-blur-xl','shadow-lg'].forEach(c=>nav.classList.toggle(c,y>20));
+const show=y>300;
+toTop.classList.toggle('opacity-0',!show);toTop.classList.toggle('pointer-events-none',!show);toTop.classList.toggle('translate-y-4',!show)}
+window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);onScroll();
+toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurum Studio — Brands and websites with authority</title>
+<meta name="description" content="Aurum Studio is a Dhaka design company building websites, brand identities, marketing and workspace concepts.">
+<meta name="color-scheme" content="dark">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<script>
+tailwind.config={theme:{extend:{fontFamily:{display:['"Cinzel Decorative"','serif'],body:['"EB Garamond"','serif']},colors:{night:'#0e0b03',panel:'#1c1505',panel2:'#261c07',line:'#43350f',gold:{DEFAULT:'#f2c230',hi:'#ffe27a',lo:'#b8860b'},goldhi:'#ffe27a',ivory:'#f3ecd4',mute:'#b9a97a'}}}}
+</script>
+<style>
+/* ===== Aurum Studio — shared design system (dark, gold, royal) ===== */
+:root{--night:#0e0b03;--panel:#1c1505;--panel2:#261c07;--line:#43350f;--gold:#f2c230;--goldhi:#ffe27a;--goldlo:#b8860b;--ivory:#f3ecd4;--mute:#b9a97a;--cut:14px;
+--chamfer:polygon(var(--cut) 0,calc(100% - var(--cut)) 0,100% var(--cut),100% calc(100% - var(--cut)),calc(100% - var(--cut)) 100%,var(--cut) 100%,0 calc(100% - var(--cut)),0 var(--cut));
+--leaf:linear-gradient(135deg,#fff1a8 0%,#f2c230 38%,#b8860b 62%,#f2c230 100%)}
+html{font-size:19px;scroll-behavior:smooth;scroll-padding-top:90px;background:#0e0b03}
+::selection{background:#f2c230;color:#0e0b03}
+:focus-visible{outline:2px solid var(--goldhi);outline-offset:3px}
+::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:var(--night)}::-webkit-scrollbar-thumb{background:var(--goldlo);border-radius:6px}
+
+.page-bg{background:radial-gradient(60rem 40rem at 8% -5%,rgba(242,194,48,.12),transparent 60%),radial-gradient(50rem 40rem at 100% 35%,rgba(184,134,11,.16),transparent 60%),var(--night)}
+
+/* gold leaf text */
+.leaf{background-image:linear-gradient(100deg,var(--ivory) 0%,var(--ivory) 30%,var(--goldhi) 62%,var(--gold) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.leaf-solid{background-image:var(--leaf);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+
+/* chamfered shapes: the studio's signature */
+.chamfer{clip-path:var(--chamfer)}
+.frame{position:relative;isolation:isolate;clip-path:var(--chamfer);background:linear-gradient(135deg,var(--gold),var(--line) 35%,var(--line) 65%,var(--gold))}
+.frame::before{content:"";position:absolute;inset:1px;z-index:-1;background:var(--panel);clip-path:var(--chamfer)}
+
+.btn-gold,.btn-line{position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:.7rem;padding:1rem 1.9rem;font-family:'EB Garamond',serif;font-weight:600;font-size:1.05rem;letter-spacing:.03em;clip-path:var(--chamfer);--cut:10px;transition:filter .25s,transform .25s;cursor:pointer;border:0}
+.btn-gold{color:#1a1205;background:var(--leaf)}
+.btn-gold:hover{filter:brightness(1.12)}
+.btn-line{color:var(--gold);background:var(--gold)}
+.btn-line::before{content:"";position:absolute;inset:1px;z-index:-1;background:var(--night);clip-path:var(--chamfer);transition:background .25s}
+.btn-line:hover::before{background:#2f2409}
+.btn-sm{padding:.7rem 1.3rem;font-size:.95rem}
+
+/* navigation */
+.nav-a{position:relative;font-size:1.05rem;letter-spacing:.04em;color:var(--ivory);padding:.4rem 0;transition:color .2s}
+.nav-a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.nav-a:hover,.nav-a.on{color:var(--goldhi)}
+.nav-a:hover::after,.nav-a.on::after{transform:scaleX(1)}
+.hdr-solid{background:rgba(14,11,3,.88);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(242,194,48,.25)}
+.crest{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:var(--night);background:var(--leaf);box-shadow:0 0 0 4px var(--night),0 0 0 5px var(--gold)}
+
+/* hero seal */
+.seal-ring{animation:spin 70s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.rise{opacity:0;transform:translateY(20px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:var(--d,0s)}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* section heading */
+.sec-title{font-family:'Cinzel Decorative',serif;font-weight:700;letter-spacing:.02em;line-height:1.15;font-size:clamp(1.9rem,3.6vw,3rem);color:var(--ivory)}
+.rule{height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+
+/* ledger (dotted leaders) */
+.ledger>div{display:flex;align-items:baseline;gap:.7rem;padding:.35rem 0}
+.ledger dt{color:var(--mute);font-style:italic}
+.ledger i{flex:1;border-bottom:1px dotted #6b5a22;transform:translateY(-.25em)}
+.ledger dd{color:var(--ivory);font-weight:600;text-align:right;min-width:0;overflow-wrap:anywhere}
+.ledger dt{white-space:nowrap}
+
+/* services index rows */
+.svc{position:relative;display:grid;align-items:center;gap:1rem 1.5rem;grid-template-columns:3.2rem 1fr;padding:1.7rem 1.2rem;border-top:1px solid var(--line);overflow:hidden;isolation:isolate;transition:color .35s}
+.svc:last-child{border-bottom:1px solid var(--line)}
+.svc::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--leaf);transform:scaleY(0);transform-origin:bottom;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.svc:hover::before,.svc:focus-visible::before{transform:scaleY(1)}
+.svc:hover,.svc:focus-visible{color:#1a1205}
+.svc:hover .svc-d,.svc:focus-visible .svc-d{color:#3a2a08}
+.svc:hover .svc-i,.svc:focus-visible .svc-i{color:#1a1205;border-color:#1a1205}
+.svc-i{width:3.2rem;height:3.2rem;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);transition:all .35s}
+.svc-d{color:var(--mute);transition:color .35s}
+@media(min-width:768px){.svc{grid-template-columns:3.2rem minmax(0,1fr) minmax(0,1.3fr) 1.5rem}}
+
+/* tabs / project window */
+.proj-tab{display:flex;align-items:center;gap:.8rem;width:100%;text-align:left;padding:1rem 1.2rem;border-left:2px solid transparent;color:var(--mute);transition:all .25s;white-space:nowrap}
+.proj-tab:hover{color:var(--ivory);background:rgba(242,194,48,.05)}
+.proj-tab.on{color:var(--goldhi);border-color:var(--gold);background:rgba(242,194,48,.09)}
+.tree{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem;line-height:1.9;color:var(--mute)}
+.tree li{display:flex;gap:.55rem;align-items:center}
+.tree .f{color:var(--ivory)}.tree .d{color:var(--gold)}.tree small{color:#7a6a3a;margin-left:.4rem}
+
+/* portfolio */
+.pf{position:relative;display:block;transition:opacity .4s,filter .4s}
+.pf.dim{opacity:.22;filter:grayscale(1)}
+.pf .ph{position:relative;overflow:hidden;clip-path:var(--chamfer);background:var(--panel2)}
+.pf img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.pf:hover img{transform:scale(1.07)}
+.pf .ph::after{content:"";position:absolute;inset:10px;border:1px solid var(--gold);clip-path:var(--chamfer);--cut:10px;opacity:0;transition:opacity .35s}
+.pf:hover .ph::after{opacity:1}
+.f-btn{position:relative;padding:.3rem 0;color:var(--mute);font-size:1.1rem;transition:color .2s}
+.f-btn::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .3s}
+.f-btn.on,.f-btn:hover{color:var(--goldhi)}.f-btn.on::after{transform:scaleX(1)}
+
+/* pricing */
+.plan-hi{background:var(--leaf);color:#1a1205}
+
+/* form */
+.field{width:100%;background:transparent;border:0;border-bottom:1px solid #5a4a1a;padding:.95rem 0;color:var(--ivory);font:inherit;font-size:1.15rem;transition:border-color .25s}
+.field::placeholder{color:#8f8156}
+.field:focus{outline:none;border-color:var(--gold)}
+select.field option{background:var(--panel);color:var(--ivory)}
+
+/* article text */
+.prose-r p{margin-top:1.25rem;font-size:1.28rem;line-height:1.85;color:#d9d0bb}
+.prose-r h2{margin-top:2.6rem;font-family:'Cinzel Decorative',serif;font-weight:700;font-size:1.5rem;line-height:1.3;color:var(--goldhi)}
+.prose-r blockquote{margin:2.2rem 0 0;padding:.4rem 0 .4rem 1.6rem;border-left:2px solid var(--gold);font-size:1.55rem;line-height:1.55;font-style:italic;color:var(--ivory)}
+.prose-r ul{margin-top:1.3rem;display:grid;gap:.7rem}
+.prose-r li{display:flex;gap:.9rem;font-size:1.22rem;line-height:1.7;color:#d9d0bb}
+.prose-r li::before,.tick li::before{content:"\f00c";font-family:"Font Awesome 6 Free";font-weight:900;color:var(--gold);font-size:.8rem;margin-top:.5rem}
+.drop>p:first-child::first-letter{font-family:'Cinzel Decorative',serif;font-weight:700;float:left;font-size:4.6rem;line-height:.82;padding:.45rem .7rem 0 0;color:var(--gold)}
+.tick li{display:flex;gap:.9rem;font-size:1.22rem;line-height:1.7;color:#d9d0bb}
+
+/* arch image (about) */
+.arch{border-radius:999px 999px 0 0;overflow:hidden}
+
+/* footer wordmark */
+.wordmark{font-family:'Cinzel Decorative',serif;font-weight:900;font-size:clamp(4.2rem,23vw,21rem);line-height:.78;letter-spacing:.02em;color:transparent;-webkit-text-stroke:1px rgba(242,194,48,.55);text-align:center;user-select:none;white-space:nowrap;overflow:hidden}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rise{opacity:1;transform:none}}
+</style>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230e0b03'/%3E%3Cpath d='M12 46V22l12 12 8-14 8 14 12-12v24z' fill='%23f2c230'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#0e0b03">
+</head>
+<body class="font-body bg-night text-ivory antialiased overflow-x-hidden page-bg">
+<!-- ================= NAVIGATION ================= -->
+<header id="hdr" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+<div class="max-w-7xl mx-auto px-5 h-[84px] flex items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-8 xl:gap-12">
+<nav class="hidden lg:flex justify-end gap-5 xl:gap-9" aria-label="Primary"><a class="nav-a" data-s="home" href="index.html#home">Home</a><a class="nav-a" data-s="about" href="index.html#about">About</a><a class="nav-a" data-s="services" href="index.html#services">Services</a><a class="nav-a" data-s="blog" href="index.html#blog">Blog</a></nav>
+<a href="index.html#home" class="flex items-center gap-3" aria-label="Aurum Studio home"><span class="crest"><i class="fa-solid fa-crown"></i></span><span class="font-display font-bold text-xl tracking-widest text-ivory">AURUM</span></a>
+<nav class="hidden lg:flex justify-start gap-5 xl:gap-9" aria-label="Secondary"><a class="nav-a" data-s="projects" href="index.html#projects">Projects</a><a class="nav-a" data-s="portfolio" href="index.html#portfolio">Portfolio</a><a class="nav-a" data-s="pricing" href="index.html#pricing">Pricing</a><a class="nav-a" data-s="contact" href="index.html#contact">Contact</a></nav>
+<button id="menuBtn" class="lg:hidden w-11 h-11 grid place-items-center text-gold border border-gold/60 rounded-lg" aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+</div>
+<div id="mm" class="hidden lg:hidden mx-4 mb-3 frame" style="--cut:16px">
+<nav class="p-3 grid grid-cols-2 gap-1" aria-label="Mobile"><a class="nav-a m-a block !py-3 px-3" data-s="home" href="index.html#home">Home</a><a class="nav-a m-a block !py-3 px-3" data-s="about" href="index.html#about">About</a><a class="nav-a m-a block !py-3 px-3" data-s="services" href="index.html#services">Services</a><a class="nav-a m-a block !py-3 px-3" data-s="blog" href="index.html#blog">Blog</a><a class="nav-a m-a block !py-3 px-3" data-s="projects" href="index.html#projects">Projects</a><a class="nav-a m-a block !py-3 px-3" data-s="portfolio" href="index.html#portfolio">Portfolio</a><a class="nav-a m-a block !py-3 px-3" data-s="pricing" href="index.html#pricing">Pricing</a><a class="nav-a m-a block !py-3 px-3" data-s="contact" href="index.html#contact">Contact</a></nav>
+</div>
+</header>
+
+<main>
+<!-- ================= HERO ================= -->
+<section id="home" class="relative overflow-hidden pt-32 pb-24 lg:pt-40 lg:min-h-[100svh] flex items-center">
+<div class="relative max-w-7xl mx-auto px-5 w-full grid grid-cols-1 lg:grid-cols-[1.1fr_.9fr] gap-14 items-center">
+<div>
+<h1 class="rise font-display font-bold leaf text-[clamp(2.2rem,5.4vw,4.8rem)] leading-[1.1] tracking-wide" style="--d:.1s">Brands and websites with authority</h1>
+<p class="rise mt-8 max-w-xl text-[1.4rem] leading-relaxed text-mute" style="--d:.3s">Aurum Studio is a design company in Dhaka. We build websites, identities and workspaces for businesses that want to look established from the first day.</p>
+<div class="rise mt-10 flex flex-wrap gap-4" style="--d:.5s">
+<a href="#portfolio" class="btn-gold">See our work</a>
+<a href="#contact" class="btn-line">Request a quote</a>
+</div>
+<p class="rise mt-12 text-mute italic" style="--d:.7s">Twelve years in practice. More than 250 projects delivered.</p>
+</div>
+
+<!-- seal -->
+<div class="rise relative mx-auto w-full max-w-[32rem] aspect-square" style="--d:.35s">
+<div class="absolute inset-[8%] rounded-full bg-gold/20 blur-3xl"></div>
+<svg class="seal-ring absolute inset-0 w-full h-full" viewBox="0 0 500 500" aria-hidden="true">
+<defs><path id="sealPath" d="M250,250 m-212,0 a212,212 0 1,1 424,0 a212,212 0 1,1 -424,0"/></defs>
+<circle cx="250" cy="250" r="246" fill="none" stroke="#f2c230" stroke-opacity=".55"/>
+<circle cx="250" cy="250" r="184" fill="none" stroke="#f2c230" stroke-opacity=".55"/>
+<text font-family="Cinzel Decorative" font-weight="700" font-size="24" fill="#f2c230"><textPath href="#sealPath" textLength="1322" lengthAdjust="spacing">AURUM STUDIO &#9670; BRANDS &#9670; WEBSITES &#9670; WORKSPACES &#9670; DHAKA &#9670; SINCE 2014 &#9670;</textPath></text>
+</svg>
+<div class="absolute inset-[17%] rounded-full overflow-hidden" style="background:radial-gradient(circle at 50% 30%,#ffe27a,#f2c230 55%,#b8860b)">
+<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=70" alt="Reehan, founder of Aurum Studio" class="absolute inset-0 w-full h-full object-cover object-top" onerror="this.onerror=null;this.src='images/reehan.png'">
+</div>
+</div>
+</div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about" class="py-28">
+<div class="max-w-7xl mx-auto px-5 grid grid-cols-1 lg:grid-cols-[.85fr_1.15fr] gap-16 lg:gap-24 items-center">
+<div class="relative mx-auto w-full max-w-md">
+<div class="arch absolute inset-0 translate-x-4 translate-y-4 border border-gold/70" style="border-radius:999px 999px 0 0"></div>
+<div class="arch relative h-[34rem] bg-panel2"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=70" onerror="this.onerror=null;this.src='images/portfolio/2.jpg'" alt="The Aurum Studio meeting room" loading="lazy" class="w-full h-full object-cover"></div>
+</div>
+<div>
+<h2 class="sec-title">Hello, I'm Reehan. I run Aurum Studio.</h2>
+<p class="mt-6 text-[1.3rem] leading-relaxed text-[#d9d0bb] max-w-xl">For twelve years I have helped start-ups and established companies turn ideas into polished digital products. My team blends design, technology and marketing, so what we make looks right and also does its job.</p>
+<p class="mt-4 text-[1.3rem] leading-relaxed text-[#d9d0bb] max-w-xl">We do not use templates. Every client gets its own strategy, its own design and clean, fast code.</p>
+<dl class="ledger mt-9 max-w-xl text-[1.15rem]">
+<div><dt>Founder</dt><i></i><dd>Reehan</dd></div>
+<div><dt>Based in</dt><i></i><dd>Dhaka, Bangladesh</dd></div>
+<div><dt>In practice</dt><i></i><dd>12 years</dd></div>
+<div><dt>Projects delivered</dt><i></i><dd>250+</dd></div>
+<div><dt>Write to</dt><i></i><dd>hello@aurumstudio.com</dd></div>
+</dl>
+<div class="mt-9 grid gap-5 max-w-xl">
+<div><div class="flex justify-between"><span>Web design and development</span><span class="text-gold">95%</span></div><div class="mt-2 h-px bg-line relative"><span class="bar absolute left-0 top-[-1px] h-[3px] w-0 bg-gold transition-[width] duration-1000" data-w="95%"></span></div></div>
+<div><div class="flex justify-between"><span>Brand identity</span><span class="text-gold">90%</span></div><div class="mt-2 h-px bg-line relative"><span class="bar absolute left-0 top-[-1px] h-[3px] w-0 bg-gold transition-[width] duration-1000" data-w="90%"></span></div></div>
+<div><div class="flex justify-between"><span>Digital marketing</span><span class="text-gold">88%</span></div><div class="mt-2 h-px bg-line relative"><span class="bar absolute left-0 top-[-1px] h-[3px] w-0 bg-gold transition-[width] duration-1000" data-w="88%"></span></div></div>
+</div>
+<a href="#contact" class="btn-gold mt-10">Work with me</a>
+</div>
+</div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section id="services" class="py-28 bg-panel/60 border-y border-line">
+<div class="max-w-7xl mx-auto px-5">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-end">
+<h2 class="sec-title">What we make for our clients</h2>
+<p class="text-[1.25rem] text-mute max-w-lg">From the first sketch to launch day, one team handles the whole job.</p>
+</div>
+<div class="mt-14">
+<a href="#contact" class="svc"><span class="svc-i"><i class="fa-solid fa-laptop-code"></i></span><h3 class="font-display font-bold text-xl">Web design and development</h3><p class="svc-d text-[1.12rem] col-span-2 md:col-span-1">Fast, responsive websites, designed from scratch and built with clean modern code.</p><i class="fa-solid fa-arrow-right hidden md:block"></i></a>
+<a href="#contact" class="svc"><span class="svc-i"><i class="fa-solid fa-crown"></i></span><h3 class="font-display font-bold text-xl">Brand identity</h3><p class="svc-d text-[1.12rem] col-span-2 md:col-span-1">Logos, colour, type and guidelines that make a company instantly recognisable.</p><i class="fa-solid fa-arrow-right hidden md:block"></i></a>
+<a href="#contact" class="svc"><span class="svc-i"><i class="fa-solid fa-bullhorn"></i></span><h3 class="font-display font-bold text-xl">Digital marketing</h3><p class="svc-d text-[1.12rem] col-span-2 md:col-span-1">Search, social and paid campaigns that bring the right customers to your site.</p><i class="fa-solid fa-arrow-right hidden md:block"></i></a>
+<a href="#contact" class="svc"><span class="svc-i"><i class="fa-solid fa-pen-ruler"></i></span><h3 class="font-display font-bold text-xl">UI and UX design</h3><p class="svc-d text-[1.12rem] col-span-2 md:col-span-1">Research-led interfaces that feel effortless and turn visitors into customers.</p><i class="fa-solid fa-arrow-right hidden md:block"></i></a>
+<a href="#contact" class="svc"><span class="svc-i"><i class="fa-solid fa-couch"></i></span><h3 class="font-display font-bold text-xl">Workspace concepts</h3><p class="svc-d text-[1.12rem] col-span-2 md:col-span-1">Office and studio interiors that reflect your brand and help your team do its best work.</p><i class="fa-solid fa-arrow-right hidden md:block"></i></a>
+<a href="#contact" class="svc"><span class="svc-i"><i class="fa-solid fa-chess-king"></i></span><h3 class="font-display font-bold text-xl">Business consulting</h3><p class="svc-d text-[1.12rem] col-span-2 md:col-span-1">Honest advice and a growth roadmap built around your goals and your budget.</p><i class="fa-solid fa-arrow-right hidden md:block"></i></a>
+</div>
+</div>
+</section>
+
+<!-- ================= BLOG ================= -->
+<section id="blog" class="py-28">
+<div class="max-w-7xl mx-auto px-5">
+<div class="flex flex-wrap items-end justify-between gap-6">
+<h2 class="sec-title">Latest from the blog</h2>
+<p class="text-[1.25rem] text-mute max-w-md">Notes from our studio on branding, websites and keeping a business safe online.</p>
+</div>
+<div class="mt-14 grid grid-cols-1 lg:grid-cols-[1.35fr_1fr] gap-12">
+<a href="blog_single.html?id=1" class="group block">
+<div class="chamfer overflow-hidden bg-panel2 aspect-[3/2]" style="--cut:22px"><img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=900&q=70" onerror="this.onerror=null;this.src='images/blog/1.png'" alt="Why a premium brand identity pays for itself" loading="lazy" class="w-full h-full object-cover transition duration-700 group-hover:scale-105"></div>
+<p class="mt-6 text-mute italic">Branding <span class="mx-2 text-line">|</span> Oct 15, 2026 <span class="mx-2 text-line">|</span> 6 min read</p>
+<h3 class="mt-2 font-display font-bold text-[1.7rem] leading-snug group-hover:text-goldhi transition">Why a premium brand identity pays for itself</h3>
+<p class="mt-3 text-[1.2rem] text-mute max-w-xl">A strong identity builds trust, supports higher prices and keeps customers coming back.</p>
+</a>
+<div class="flex flex-col gap-10">
+<a href="blog_single.html?id=2" class="group grid grid-cols-[8.5rem_1fr] sm:grid-cols-[11rem_1fr] gap-5 items-start">
+<div class="chamfer overflow-hidden bg-panel2 aspect-[4/3]" style="--cut:10px"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=70" onerror="this.onerror=null;this.src='images/blog/2.png'" alt="A checklist for a lightning-fast website" loading="lazy" class="w-full h-full object-cover transition duration-700 group-hover:scale-110"></div>
+<div><p class="text-mute italic text-[.98rem]">Web design <span class="mx-1.5 text-line">|</span> Oct 08, 2026</p><h3 class="mt-1 font-display font-bold text-lg leading-snug group-hover:text-goldhi transition">A 7-point checklist for a lightning-fast website</h3><p class="mt-2 text-mute hidden sm:block">Speed decides whether visitors stay or leave.</p></div>
+</a>
+<div class="rule"></div>
+<a href="blog_single.html?id=3" class="group grid grid-cols-[8.5rem_1fr] sm:grid-cols-[11rem_1fr] gap-5 items-start">
+<div class="chamfer overflow-hidden bg-panel2 aspect-[4/3]" style="--cut:10px"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=70" onerror="this.onerror=null;this.src='images/blog/3.png'" alt="Five ways to keep a business website safe" loading="lazy" class="w-full h-full object-cover transition duration-700 group-hover:scale-110"></div>
+<div><p class="text-mute italic text-[.98rem]">Security <span class="mx-1.5 text-line">|</span> Sep 30, 2026</p><h3 class="mt-1 font-display font-bold text-lg leading-snug group-hover:text-goldhi transition">5 simple ways to keep your business website safe</h3><p class="mt-2 text-mute hidden sm:block">Small habits that protect your data and your customers.</p></div>
+</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects" class="py-28 bg-panel/60 border-y border-line">
+<div class="max-w-7xl mx-auto px-5">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-end">
+<h2 class="sec-title">Projects you can open and read</h2>
+<p class="text-[1.25rem] text-mute max-w-lg">Each project is a complete website. Preview it live, or browse every file in its GitHub repository.</p>
+</div>
+
+<div class="mt-14 frame" style="--cut:22px">
+<div class="flex items-center gap-2 px-5 py-3 border-b border-line">
+<span class="w-3 h-3 rounded-full bg-[#ff5f57]"></span><span class="w-3 h-3 rounded-full bg-gold"></span><span class="w-3 h-3 rounded-full bg-[#28c840]"></span>
+<span id="winPath" class="ml-4 tree !leading-none">projects/</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-[17rem_1fr]">
+<div id="projTabs" role="tablist" aria-label="Projects" class="flex lg:flex-col overflow-x-auto lg:overflow-visible border-b lg:border-b-0 lg:border-r border-line py-2"></div>
+<div id="projPanel" class="p-6 md:p-9 grid grid-cols-1 md:grid-cols-[minmax(0,.9fr)_minmax(0,1.1fr)] gap-9" aria-live="polite"></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ================= PORTFOLIO ================= -->
+<section id="portfolio" class="py-28">
+<div class="max-w-7xl mx-auto px-5">
+<div class="flex flex-wrap items-end justify-between gap-6">
+<h2 class="sec-title">Spaces and brands we have shaped</h2>
+<div class="flex gap-8" role="group" aria-label="Filter portfolio">
+<button class="f-btn on" data-f="all">All</button>
+<button class="f-btn" data-f="workspace">Workspace</button>
+<button class="f-btn" data-f="branding">Branding</button>
+</div>
+</div>
+<div class="mt-14 grid grid-cols-1 md:grid-cols-12 gap-x-6 gap-y-12">
+<a href="portfolio_single.html?id=1" data-cat="branding" class="pf md:col-span-7"><div class="ph h-[22rem] md:h-[26rem]" style="--cut:22px"><img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=70" onerror="this.onerror=null;this.src='images/portfolio/1.jpg'" alt="Minimal Gallery Wall" loading="lazy"></div><h3 class="mt-4 font-display font-bold text-lg">Minimal Gallery Wall</h3><p class="text-mute italic">Branding for Nova Art House</p></a>
+<a href="portfolio_single.html?id=2" data-cat="workspace" class="pf md:col-span-5"><div class="ph h-[22rem] md:h-[26rem]" style="--cut:22px"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=70" onerror="this.onerror=null;this.src='images/portfolio/2.jpg'" alt="Boardroom Redesign" loading="lazy"></div><h3 class="mt-4 font-display font-bold text-lg">Boardroom Redesign</h3><p class="text-mute italic">Workspace for Northwind Consulting</p></a>
+<a href="portfolio_single.html?id=3" data-cat="branding" class="pf md:col-span-5"><div class="ph h-[22rem] md:h-[26rem]" style="--cut:22px"><img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=70" onerror="this.onerror=null;this.src='images/portfolio/3.jpg'" alt="Studio Entrance" loading="lazy"></div><h3 class="mt-4 font-display font-bold text-lg">Studio Entrance</h3><p class="text-mute italic">Branding for Lumen Photo Studio</p></a>
+<a href="portfolio_single.html?id=4" data-cat="workspace" class="pf md:col-span-7"><div class="ph h-[22rem] md:h-[26rem]" style="--cut:22px"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=70" onerror="this.onerror=null;this.src='images/portfolio/4.jpg'" alt="Cafe and Lounge Space" loading="lazy"></div><h3 class="mt-4 font-display font-bold text-lg">Café and Lounge Space</h3><p class="text-mute italic">Workspace for Brew &amp; Co.</p></a>
+<a href="portfolio_single.html?id=5" data-cat="branding" class="pf md:col-span-6"><div class="ph h-[20rem]" style="--cut:22px"><img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=900&q=70" onerror="this.onerror=null;this.src='images/portfolio/5.jpg'" alt="Creative Office Brand Wall" loading="lazy"></div><h3 class="mt-4 font-display font-bold text-lg">Creative Office Brand Wall</h3><p class="text-mute italic">Branding for Pixel Forge</p></a>
+<a href="portfolio_single.html?id=6" data-cat="workspace" class="pf md:col-span-6"><div class="ph h-[20rem]" style="--cut:22px"><img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=900&q=70" onerror="this.onerror=null;this.src='images/portfolio/6.jpg'" alt="Executive Meeting Suite" loading="lazy"></div><h3 class="mt-4 font-display font-bold text-lg">Executive Meeting Suite</h3><p class="text-mute italic">Workspace for Crown Capital</p></a>
+</div>
+</div>
+</section>
+
+<!-- ================= PRICING ================= -->
+<section id="pricing" class="py-28 bg-panel/60 border-y border-line">
+<div class="max-w-7xl mx-auto px-5">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-end">
+<h2 class="sec-title">Fixed prices, no surprises</h2>
+<p class="text-[1.25rem] text-mute max-w-lg">Every package is a one-time project fee. You see the full cost before we start.</p>
+</div>
+<div class="mt-14 frame" style="--cut:26px">
+<div class="grid grid-cols-1 md:grid-cols-3 md:divide-x divide-line">
+<div class="p-9 flex flex-col">
+<h3 class="font-display font-bold text-2xl">Starter</h3><p class="mt-1 text-mute">For small businesses and personal brands.</p>
+<p class="mt-7 font-display font-bold text-5xl leaf-solid">$499</p>
+<ul class="mt-7 grid gap-3 flex-1 tick"><li>One-page website</li><li>Mobile responsive design</li><li>Basic search setup</li><li>Delivered in 7 days</li></ul>
+<a href="#contact" class="btn-line mt-9">Choose Starter</a>
+</div>
+<div class="p-9 flex flex-col plan-hi md:-my-6 md:py-[3.75rem]" style="clip-path:var(--chamfer);--cut:22px">
+<h3 class="font-display font-bold text-2xl">Business</h3><p class="mt-1 text-[#4a3608]">For growing companies. Most clients choose this.</p>
+<p class="mt-7 font-display font-bold text-5xl">$999</p>
+<ul class="mt-7 grid gap-3 flex-1 font-semibold text-[1.15rem]"><li><i class="fa-solid fa-check mr-3 text-sm"></i>Up to 8 custom pages</li><li><i class="fa-solid fa-check mr-3 text-sm"></i>Logo and brand kit</li><li><i class="fa-solid fa-check mr-3 text-sm"></i>Blog and portfolio setup</li><li><i class="fa-solid fa-check mr-3 text-sm"></i>Advanced SEO and analytics</li><li><i class="fa-solid fa-check mr-3 text-sm"></i>Delivered in 14 days</li></ul>
+<a href="#contact" class="mt-9 inline-flex justify-center items-center py-4 px-8 font-semibold bg-night text-goldhi chamfer hover:bg-black transition" style="--cut:10px">Choose Business</a>
+</div>
+<div class="p-9 flex flex-col">
+<h3 class="font-display font-bold text-2xl">Enterprise</h3><p class="mt-1 text-mute">Complete branding and digital growth.</p>
+<p class="mt-7 font-display font-bold text-5xl leaf-solid">$1,999</p>
+<ul class="mt-7 grid gap-3 flex-1 tick"><li>Unlimited pages and features</li><li>Full brand identity</li><li>Three months of marketing support</li><li>Priority support, every day</li></ul>
+<a href="#contact" class="btn-line mt-9">Choose Enterprise</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="py-28">
+<div class="max-w-7xl mx-auto px-5 grid grid-cols-1 lg:grid-cols-[.9fr_1.1fr] gap-16 lg:gap-24">
+<div>
+<h2 class="sec-title">Tell us what you are building</h2>
+<p class="mt-6 text-[1.3rem] text-mute max-w-md">Send a few lines about your project. We reply within one working day, with questions or a quote.</p>
+<ul class="mt-12 grid gap-7">
+<li class="flex gap-5 items-start"><i class="fa-solid fa-envelope text-gold mt-1.5 w-5"></i><div><p class="text-mute italic">Email</p><p class="text-[1.3rem] font-semibold break-all">hello@aurumstudio.com</p></div></li>
+<li class="flex gap-5 items-start"><i class="fa-solid fa-phone text-gold mt-1.5 w-5"></i><div><p class="text-mute italic">Phone</p><p class="text-[1.3rem] font-semibold">+880 1700-000000</p></div></li>
+<li class="flex gap-5 items-start"><i class="fa-solid fa-location-dot text-gold mt-1.5 w-5"></i><div><p class="text-mute italic">Studio</p><p class="text-[1.3rem] font-semibold">Gulshan, Dhaka, Bangladesh</p></div></li>
+<li class="flex gap-5 items-start"><i class="fa-solid fa-clock text-gold mt-1.5 w-5"></i><div><p class="text-mute italic">Open</p><p class="text-[1.3rem] font-semibold">Saturday to Thursday, 10am to 7pm</p></div></li>
+</ul>
+</div>
+<form id="contactForm" class="frame" style="--cut:22px">
+<div class="p-7 sm:p-11 grid gap-7">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-7">
+<label><span class="sr-only">Your name</span><input required type="text" placeholder="Your name" class="field"></label>
+<label><span class="sr-only">Email address</span><input required type="email" placeholder="Email address" class="field"></label>
+</div>
+<label><span class="sr-only">Service</span><select class="field"><option>Web design and development</option><option>Brand identity</option><option>Digital marketing</option><option>UI and UX design</option><option>Workspace concepts</option><option>Business consulting</option></select></label>
+<label><span class="sr-only">Project details</span><textarea required rows="5" placeholder="Tell us about your project" class="field resize-none"></textarea></label>
+<div class="flex flex-wrap items-center gap-5"><button class="btn-gold">Send message</button><p id="formMsg" class="hidden text-goldhi font-semibold" role="status"><i class="fa-solid fa-circle-check mr-2"></i>Message sent. We will reply soon.</p></div>
+</div>
+</form>
+</div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="relative border-t border-line pt-20 overflow-hidden">
+<div class="max-w-7xl mx-auto px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] gap-12">
+<div>
+<a href="index.html#home" class="flex items-center gap-3"><span class="crest"><i class="fa-solid fa-crown"></i></span><span class="font-display font-bold text-xl tracking-widest text-ivory">AURUM STUDIO</span></a>
+<p class="mt-5 text-mute max-w-xs">A Dhaka design company building websites, brands and workspaces for businesses that want to look established from day one.</p>
+<div class="mt-6 flex gap-3"><a href="#" aria-label="Facebook" class="w-11 h-11 grid place-items-center text-gold border border-gold/40 rounded-full hover:bg-gold hover:text-night transition"><i class="fa-brands fa-facebook-f"></i></a><a href="#" aria-label="LinkedIn" class="w-11 h-11 grid place-items-center text-gold border border-gold/40 rounded-full hover:bg-gold hover:text-night transition"><i class="fa-brands fa-linkedin-in"></i></a><a href="#" aria-label="Instagram" class="w-11 h-11 grid place-items-center text-gold border border-gold/40 rounded-full hover:bg-gold hover:text-night transition"><i class="fa-brands fa-instagram"></i></a><a href="https://github.com/reehan3343" target="_blank" rel="noopener" aria-label="GitHub" class="w-11 h-11 grid place-items-center text-gold border border-gold/40 rounded-full hover:bg-gold hover:text-night transition"><i class="fa-brands fa-github"></i></a></div>
+</div>
+<div><h4 class="font-display font-bold text-gold text-lg">Explore</h4><ul class="mt-5 space-y-2.5"><li><a class="text-mute hover:text-goldhi transition" href="index.html#about">About</a></li><li><a class="text-mute hover:text-goldhi transition" href="index.html#services">Services</a></li><li><a class="text-mute hover:text-goldhi transition" href="index.html#blog">Blog</a></li><li><a class="text-mute hover:text-goldhi transition" href="index.html#projects">Projects</a></li><li><a class="text-mute hover:text-goldhi transition" href="index.html#portfolio">Portfolio</a></li><li><a class="text-mute hover:text-goldhi transition" href="index.html#pricing">Pricing</a></li><li><a class="text-mute hover:text-goldhi transition" href="index.html#contact">Contact</a></li></ul></div>
+<div><h4 class="font-display font-bold text-gold text-lg">Services</h4><ul class="mt-5 space-y-2.5 text-mute"><li>Web design and development</li><li>Brand identity</li><li>Digital marketing</li><li>UI and UX design</li><li>Workspace concepts</li></ul></div>
+<div><h4 class="font-display font-bold text-gold text-lg">Newsletter</h4><p class="mt-5 text-mute">One short design and business note a month.</p>
+<form id="nl" class="mt-4 flex items-end gap-3"><input required type="email" placeholder="Your email" aria-label="Email address" class="field !py-2 min-w-0 flex-1"><button class="btn-gold btn-sm">Subscribe</button></form></div>
+</div>
+<div class="mt-16 -mb-[.06em] wordmark" aria-hidden="true">AURUM</div>
+<!-- COPYRIGHT -->
+<div class="relative border-t border-line bg-night">
+<div class="max-w-7xl mx-auto px-5 py-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-mute">
+<p>&copy; <span id="year">2026</span> Aurum Studio. All rights reserved.</p>
+<p>Designed and built by Reehan</p>
+</div>
+</div>
+</footer>
+
+<!-- ================= BACK TO TOP + PROGRESS RING ================= -->
+<button id="toTop" aria-label="Back to top" class="fixed right-5 bottom-5 z-50 w-14 h-14 rounded-full bg-night grid place-items-center opacity-0 pointer-events-none translate-y-4 transition-all duration-300 shadow-xl">
+<svg class="absolute inset-0 -rotate-90" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="25" fill="none" stroke="rgba(242,194,48,.2)" stroke-width="3.5"/><circle id="ring" cx="28" cy="28" r="25" fill="none" stroke="#f2c230" stroke-width="3.5" stroke-linecap="round" style="stroke-dasharray:157.08;stroke-dashoffset:157.08"/></svg>
+<i class="fa-solid fa-arrow-up text-gold relative"></i></button>
+
+<script>
+/* ===== Shared behaviour: menu, scroll progress, back-to-top, scrollspy ===== */
+(function(){
+const page=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+const $=id=>document.getElementById(id);
+$('year').textContent=new Date().getFullYear();
+$('nl').addEventListener('submit',e=>{e.preventDefault();e.target.innerHTML='<p class="text-goldhi font-semibold">You are subscribed. Thank you.</p>'});
+const mm=$('mm'),mb=$('menuBtn');
+mb.addEventListener('click',()=>{const o=mm.classList.toggle('hidden');mb.setAttribute('aria-expanded',String(!o))});
+document.querySelectorAll('.m-a').forEach(a=>a.addEventListener('click',()=>{mm.classList.add('hidden');mb.setAttribute('aria-expanded','false')}));
+const hdr=$('hdr'),toTop=$('toTop'),ring=$('ring'),CIRC=157.08;
+const navs=[...document.querySelectorAll('.nav-a')];
+const isIndex=page==='index.html'||page==='';
+const secs=isIndex?[...document.querySelectorAll('main section[id]')]:[];
+const fixed=page.startsWith('blog_single')?'blog':page.startsWith('portfolio_single')?'portfolio':null;
+function onScroll(){
+const y=window.scrollY,max=document.documentElement.scrollHeight-window.innerHeight;
+ring.style.strokeDashoffset=CIRC*(1-(max>0?Math.min(y/max,1):0));
+hdr.classList.toggle('hdr-solid',y>20);
+const show=y>300;
+toTop.classList.toggle('opacity-0',!show);toTop.classList.toggle('pointer-events-none',!show);toTop.classList.toggle('translate-y-4',!show);
+let cur=fixed;
+if(secs.length){cur=secs[0].id;secs.forEach(s=>{if(y+170>=s.offsetTop)cur=s.id})}
+navs.forEach(a=>a.classList.toggle('on',a.dataset.s===cur))}
+window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);onScroll();
+toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+})();
+</script>
+<script>
+const $=id=>document.getElementById(id);
+// ---------- Skill bars ----------
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.style.width=e.target.dataset.w;io.unobserve(e.target)}}),{threshold:.6});
+document.querySelectorAll('.bar').forEach(b=>io.observe(b));
+
+// ---------- Projects: file browser (files come from the four GitHub repos) ----------
+const PROJECTS=[
+{name:'Alex-Morgan',title:'Alex Morgan',kind:'Developer portfolio',img:'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70',fb:'images/project/1.png',desc:'A royal-blue portfolio for a front-end developer, with a project slider, skills and contact channels.',
+tree:[[0,'f','index.html','30 KB']]},
+{name:'Claude-Project',title:'Claude Project',kind:'App developer website',img:'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70',fb:'images/project/2.png',desc:'A clean personal website for an app and software developer, with a blog and project showcase.',
+tree:[[0,'f','index.html','29 KB'],[0,'d','images/',''],[1,'d','blog/','3 images'],[1,'d','project/','3 images'],[1,'i','reehan.png','']]},
+{name:'Claude-Resume',title:'Claude Resume',kind:'Online resume',img:'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=900&q=70',fb:'images/project/3.png',desc:'An online resume with a blog, a portfolio gallery and a separate blog details page.',
+tree:[[0,'f','index.html','58 KB'],[0,'f','blog_single.html','12 KB'],[0,'d','images/',''],[1,'i','alex.jpg',''],[1,'d','blog/','6 images'],[1,'d','portfolio/','6 images']]},
+{name:'Digital-Marketing-Website',title:'Digital Marketing Website',kind:'Marketing website',img:'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=70',fb:'images/blog/2.png',desc:'A dark and light site for a digital marketer, with a theme changer, a blog and four demo websites.',
+tree:[[0,'f','index.html','60 KB'],[0,'f','blog_single.html','24 KB'],[0,'d','demo/',''],[1,'f','1.html, 2.html','2 files'],[1,'f','3.html, 4.html','2 files']]}
+];
+const ic={f:'fa-regular fa-file-code',d:'fa-regular fa-folder-open',i:'fa-regular fa-image'};
+function showProject(i){
+const p=PROJECTS[i];
+document.querySelectorAll('.proj-tab').forEach((t,k)=>{t.classList.toggle('on',k===i);t.setAttribute('aria-selected',k===i)});
+$('winPath').textContent='projects/'+p.name+'/';
+$('projPanel').innerHTML=`
+<div class="chamfer overflow-hidden bg-panel2 aspect-[4/3] md:aspect-auto md:min-h-[22rem]" style="--cut:18px"><img src="${p.img}" alt="${p.title} preview" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='${p.fb}'"></div>
+<div class="flex flex-col">
+<p class="text-mute italic">${p.kind}</p>
+<h3 class="mt-1 font-display font-bold text-2xl">${p.title}</h3>
+<p class="mt-3 text-[1.2rem] text-[#d9d0bb]">${p.desc}</p>
+<ul class="tree mt-5 border-t border-line pt-4">${p.tree.map(r=>`<li style="padding-left:${r[0]*1.4}rem"><i class="${ic[r[1]]} ${r[1]==='d'?'d':'f'}"></i><span class="${r[1]==='d'?'d':'f'}">${r[2]}</span><small>${r[3]}</small></li>`).join('')}</ul>
+<div class="mt-7 flex flex-wrap gap-4">
+<a href="projects/${p.name}/index.html" target="_blank" rel="noopener" class="btn-gold btn-sm"><i class="fa-solid fa-eye"></i>Live preview</a>
+<a href="https://github.com/reehan3343/${p.name}" target="_blank" rel="noopener" class="btn-line btn-sm"><i class="fa-brands fa-github"></i>GitHub</a>
+</div></div>`;
+}
+$('projTabs').innerHTML=PROJECTS.map((p,i)=>`<button role="tab" class="proj-tab" data-i="${i}"><i class="fa-solid fa-folder"></i>${p.title}</button>`).join('');
+document.querySelectorAll('.proj-tab').forEach(t=>t.addEventListener('click',()=>showProject(+t.dataset.i)));
+showProject(0);
+
+// ---------- Portfolio filter (non-matching items are dimmed) ----------
+document.querySelectorAll('.f-btn').forEach(b=>b.addEventListener('click',()=>{
+document.querySelectorAll('.f-btn').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+document.querySelectorAll('.pf').forEach(i=>i.classList.toggle('dim',b.dataset.f!=='all'&&i.dataset.cat!==b.dataset.f))}));
+
+// ---------- Contact form ----------
+$('contactForm').addEventListener('submit',e=>{e.preventDefault();e.target.reset();$('formMsg').classList.remove('hidden');setTimeout(()=>$('formMsg').classList.add('hidden'),4500)});
+</script>
+</body>
+</html>

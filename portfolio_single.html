@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Aurum Studio</title>
+<meta name="description" content="A closer look at a project from the Aurum Studio portfolio.">
+<meta name="color-scheme" content="dark">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<script>
+tailwind.config={theme:{extend:{fontFamily:{display:['"Cinzel Decorative"','serif'],body:['"EB Garamond"','serif']},colors:{night:'#0e0b03',panel:'#1c1505',panel2:'#261c07',line:'#43350f',gold:{DEFAULT:'#f2c230',hi:'#ffe27a',lo:'#b8860b'},goldhi:'#ffe27a',ivory:'#f3ecd4',mute:'#b9a97a'}}}}
+</script>
+<style>
+/* ===== Aurum Studio — shared design system (dark, gold, royal) ===== */
+:root{--night:#0e0b03;--panel:#1c1505;--panel2:#261c07;--line:#43350f;--gold:#f2c230;--goldhi:#ffe27a;--goldlo:#b8860b;--ivory:#f3ecd4;--mute:#b9a97a;--cut:14px;
+--chamfer:polygon(var(--cut) 0,calc(100% - var(--cut)) 0,100% var(--cut),100% calc(100% - var(--cut)),calc(100% - var(--cut)) 100%,var(--cut) 100%,0 calc(100% - var(--cut)),0 var(--cut));
+--leaf:linear-gradient(135deg,#fff1a8 0%,#f2c230 38%,#b8860b 62%,#f2c230 100%)}
+html{font-size:19px;scroll-behavior:smooth;scroll-padding-top:90px;background:#0e0b03}
+::selection{background:#f2c230;color:#0e0b03}
+:focus-visible{outline:2px solid var(--goldhi);outline-offset:3px}
+::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:var(--night)}::-webkit-scrollbar-thumb{background:var(--goldlo);border-radius:6px}
+
+.page-bg{background:radial-gradient(60rem 40rem at 8% -5%,rgba(242,194,48,.12),transparent 60%),radial-gradient(50rem 40rem at 100% 35%,rgba(184,134,11,.16),transparent 60%),var(--night)}
+
+/* gold leaf text */
+.leaf{background-image:linear-gradient(100deg,var(--ivory) 0%,var(--ivory) 30%,var(--goldhi) 62%,var(--gold) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.leaf-solid{background-image:var(--leaf);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+
+/* chamfered shapes: the studio's signature */
+.chamfer{clip-path:var(--chamfer)}
+.frame{position:relative;isolation:isolate;clip-path:var(--chamfer);background:linear-gradient(135deg,var(--gold),var(--line) 35%,var(--line) 65%,var(--gold))}
+.frame::before{content:"";position:absolute;inset:1px;z-index:-1;background:var(--panel);clip-path:var(--chamfer)}
+
+.btn-gold,.btn-line{position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:.7rem;padding:1rem 1.9rem;font-family:'EB Garamond',serif;font-weight:600;font-size:1.05rem;letter-spacing:.03em;clip-path:var(--chamfer);--cut:10px;transition:filter .25s,transform .25s;cursor:pointer;border:0}
+.btn-gold{color:#1a1205;background:var(--leaf)}
+.btn-gold:hover{filter:brightness(1.12)}
+.btn-line{color:var(--gold);background:var(--gold)}
+.btn-line::before{content:"";position:absolute;inset:1px;z-index:-1;background:var(--night);clip-path:var(--chamfer);transition:background .25s}
+.btn-line:hover::before{background:#2f2409}
+.btn-sm{padding:.7rem 1.3rem;font-size:.95rem}
+
+/* navigation */
+.nav-a{position:relative;font-size:1.05rem;letter-spacing:.04em;color:var(--ivory);padding:.4rem 0;transition:color .2s}
+.nav-a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.nav-a:hover,.nav-a.on{color:var(--goldhi)}
+.nav-a:hover::after,.nav-a.on::after{transform:scaleX(1)}
+.hdr-solid{background:rgba(14,11,3,.88);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(242,194,48,.25)}
+.crest{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:var(--night);background:var(--leaf);box-shadow:0 0 0 4px var(--night),0 0 0 5px var(--gold)}
+
+/* hero seal */
+.seal-ring{animation:spin 70s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.rise{opacity:0;transform:translateY(20px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:var(--d,0s)}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* section heading */
+.sec-title{font-family:'Cinzel Decorative',serif;font-weight:700;letter-spacing:.02em;line-height:1.15;font-size:clamp(1.9rem,3.6vw,3rem);color:var(--ivory)}
+.rule{height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+
+/* ledger (dotted leaders) */
+.ledger>div{display:flex;align-items:baseline;gap:.7rem;padding:.35rem 0}
+.ledger dt{color:var(--mute);font-style:italic}
+.ledger i{flex:1;border-bottom:1px dotted #6b5a22;transform:translateY(-.25em)}
+.ledger dd{color:var(--ivory);font-weight:600;text-align:right;min-width:0;overflow-wrap:anywhere}
+.ledger dt{white-space:nowrap}
+
+/* services index rows */
+.svc{position:relative;display:grid;align-items:center;gap:1rem 1.5rem;grid-template-columns:3.2rem 1fr;padding:1.7rem 1.2rem;border-top:1px solid var(--line);overflow:hidden;isolation:isolate;transition:color .35s}
+.svc:last-child{border-bottom:1px solid var(--line)}
+.svc::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--leaf);transform:scaleY(0);transform-origin:bottom;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.svc:hover::before,.svc:focus-visible::before{transform:scaleY(1)}
+.svc:hover,.svc:focus-visible{color:#1a1205}
+.svc:hover .svc-d,.svc:focus-visible .svc-d{color:#3a2a08}
+.svc:hover .svc-i,.svc:focus-visible .svc-i{color:#1a1205;border-color:#1a1205}
+.svc-i{width:3.2rem;height:3.2rem;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);transition:all .35s}
+.svc-d{color:var(--mute);transition:color .35s}
+@media(min-width:768px){.svc{grid-template-columns:3.2rem minmax(0,1fr) minmax(0,1.3fr) 1.5rem}}
+
+/* tabs / project window */
+.proj-tab{display:flex;align-items:center;gap:.8rem;width:100%;text-align:left;padding:1rem 1.2rem;border-left:2px solid transparent;color:var(--mute);transition:all .25s;white-space:nowrap}
+.proj-tab:hover{color:var(--ivory);background:rgba(242,194,48,.05)}
+.proj-tab.on{color:var(--goldhi);border-color:var(--gold);background:rgba(242,194,48,.09)}
+.tree{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem;line-height:1.9;color:var(--mute)}
+.tree li{display:flex;gap:.55rem;align-items:center}
+.tree .f{color:var(--ivory)}.tree .d{color:var(--gold)}.tree small{color:#7a6a3a;margin-left:.4rem}
+
+/* portfolio */
+.pf{position:relative;display:block;transition:opacity .4s,filter .4s}
+.pf.dim{opacity:.22;filter:grayscale(1)}
+.pf .ph{position:relative;overflow:hidden;clip-path:var(--chamfer);background:var(--panel2)}
+.pf img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.pf:hover img{transform:scale(1.07)}
+.pf .ph::after{content:"";position:absolute;inset:10px;border:1px solid var(--gold);clip-path:var(--chamfer);--cut:10px;opacity:0;transition:opacity .35s}
+.pf:hover .ph::after{opacity:1}
+.f-btn{position:relative;padding:.3rem 0;color:var(--mute);font-size:1.1rem;transition:color .2s}
+.f-btn::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .3s}
+.f-btn.on,.f-btn:hover{color:var(--goldhi)}.f-btn.on::after{transform:scaleX(1)}
+
+/* pricing */
+.plan-hi{background:var(--leaf);color:#1a1205}
+
+/* form */
+.field{width:100%;background:transparent;border:0;border-bottom:1px solid #5a4a1a;padding:.95rem 0;color:var(--ivory);font:inherit;font-size:1.15rem;transition:border-color .25s}
+.field::placeholder{color:#8f8156}
+.field:focus{outline:none;border-color:var(--gold)}
+select.field option{background:var(--panel);color:var(--ivory)}
+
+/* article text */
+.prose-r p{margin-top:1.25rem;font-size:1.28rem;line-height:1.85;color:#d9d0bb}
+.prose-r h2{margin-top:2.6rem;font-family:'Cinzel Decorative',serif;font-weight:700;font-size:1.5rem;line-height:1.3;color:var(--goldhi)}
+.prose-r blockquote{margin:2.2rem 0 0;padding:.4rem 0 .4rem 1.6rem;border-left:2px solid var(--gold);font-size:1.55rem;line-height:1.55;font-style:italic;color:var(--ivory)}
+.prose-r ul{margin-top:1.3rem;display:grid;gap:.7rem}
+.prose-r li{display:flex;gap:.9rem;font-size:1.22rem;line-height:1.7;color:#d9d0bb}
+.prose-r li::before,.tick li::before{content:"\f00c";font-family:"Font Awesome 6 Free";font-weight:900;color:var(--gold);font-size:.8rem;margin-top:.5rem}
+.drop>p:first-child::first-letter{font-family:'Cinzel Decorative',serif;font-weight:700;float:left;font-size:4.6rem;line-height:.82;padding:.45rem .7rem 0 0;color:var(--gold)}
+.tick li{display:flex;gap:.9rem;font-size:1.22rem;line-height:1.7;color:#d9d0bb}
+
+/* arch image (about) */
+.arch{border-radius:999px 999px 0 0;overflow:hidden}
+
+/* footer wordmark */
+.wordmark{font-family:'Cinzel Decorative',serif;font-weight:900;font-size:clamp(4.2rem,23vw,21rem);line-height:.78;letter-spacing:.02em;color:transparent;-webkit-text-stroke:1px rgba(242,194,48,.55);text-align:center;user-select:none;white-space:nowrap;overflow:hidden}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rise{opacity:1;transform:none}}
+</style>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230e0b03'/%3E%3Cpath d='M12 46V22l12 12 8-14 8 14 12-12v24z' fill='%23f2c230'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#0e0b03">
+</head>
+<body class="font-body bg-night text-ivory antialiased overflow-x-hidden page-bg">
+<!-- ================= NAVIGATION ================= -->
+<header id="hdr" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+<div class="max-w-7xl mx-auto px-5 h-[84px] flex items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-8 xl:gap-12">
+<nav class="hidden lg:flex justify-end gap-5 xl:gap-9" aria-label="Primary"><a class="nav-a" data-s="home" href="index.html#home">Home</a><a class="nav-a" data-s="about" href="index.html#about">About</a><a class="nav-a" data-s="services" href="index.html#services">Services</a><a class="nav-a" data-s="blog" href="index.html#blog">Blog</a></nav>
+<a href="index.html#home" class="flex items-center gap-3" aria-label="Aurum Studio home"><span class="crest"><i class="fa-solid fa-crown"></i></span><span class="font-display font-bold text-xl tracking-widest text-ivory">AURUM</span></a>
+<nav class="hidden lg:flex justify-start gap-5 xl:gap-9" aria-label="Secondary"><a class="nav-a" data-s="projects" href="index.html#projects">Projects</a><a class="nav-a" data-s="portfolio" href="index.html#portfolio">Portfolio</a><a class="nav-a" data-s="pricing" href="index.html#pricing">Pricing</a><a class="nav-a" data-s="contact" href="index.html#contact">Contact</a></nav>
+<button id="menuBtn" class="lg:hidden w-11 h-11 grid place-items-center text-gold border border-gold/60 rounded-lg" aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+</div>
+<div id="mm" class="hidden lg:hidden mx-4 mb-3 frame" style="--cut:16px">
+<nav class="p-3 grid grid-cols-2 gap-1" aria-label="Mobile"><a class="nav-a m-a block !py-3 px-3" data-s="home" href="index.html#home">Home</a><a class="nav-a m-a block !py-3 px-3" data-s="about" href="index.html#about">About</a><a class="nav-a m-a block !py-3 px-3" data-s="services" href="index.html#services">Services</a><a class="nav-a m-a block !py-3 px-3" data-s="blog" href="index.html#blog">Blog</a><a class="nav-a m-a block !py-3 px-3" data-s="projects" href="index.html#projects">Projects</a><a class="nav-a m-a block !py-3 px-3" data-s="portfolio" href="index.html#portfolio">Portfolio</a><a class="nav-a m-a block !py-3 px-3" data-s="pricing" href="index.html#pricing">Pricing</a><a class="nav-a m-a block !py-3 px-3" data-s="contact" href="index.html#contact">Contact</a></nav>
+</div>
+</header>
+
+<main>
+<!-- ================= PROJECT HEADER ================= -->
+<section class="pt-40 pb-12">
+<div class="max-w-6xl mx-auto px-5">
+<nav class="text-mute italic flex flex-wrap items-center gap-2" aria-label="Breadcrumb">
+<a href="index.html" class="hover:text-goldhi">Home</a><span class="text-line">/</span>
+<a href="index.html#portfolio" class="hover:text-goldhi">Portfolio</a><span class="text-line">/</span>
+<span id="crumb" class="text-gold"></span>
+</nav>
+<h1 id="pTitle" class="mt-6 font-display font-bold leaf text-[clamp(2.1rem,5vw,4.2rem)] leading-[1.12] max-w-4xl"></h1>
+<p id="pLead" class="mt-6 text-[1.4rem] text-mute max-w-2xl leading-relaxed"></p>
+</div>
+</section>
+
+<!-- ================= PROJECT BODY ================= -->
+<section class="pb-28">
+<div class="max-w-6xl mx-auto px-5">
+<div class="chamfer overflow-hidden bg-panel2 h-72 sm:h-[30rem]" style="--cut:28px"><img id="pImg" src="" alt="" class="w-full h-full object-cover"></div>
+
+<!-- facts row -->
+<dl class="mt-10 grid grid-cols-2 md:grid-cols-5 border-y border-line">
+<div class="py-5 pr-4"><dt class="text-mute italic">Client</dt><dd id="iClient" class="mt-1 font-semibold text-[1.15rem]"></dd></div>
+<div class="py-5 px-4 md:border-l border-line"><dt class="text-mute italic">Category</dt><dd id="iCat" class="mt-1 font-semibold text-[1.15rem]"></dd></div>
+<div class="py-5 pr-4 md:px-4 md:border-l border-line"><dt class="text-mute italic">Completed</dt><dd id="iDate" class="mt-1 font-semibold text-[1.15rem]"></dd></div>
+<div class="py-5 px-4 md:border-l border-line"><dt class="text-mute italic">Location</dt><dd id="iLoc" class="mt-1 font-semibold text-[1.15rem]"></dd></div>
+<div class="py-5 pr-4 md:px-4 md:border-l border-line col-span-2 md:col-span-1"><dt class="text-mute italic">Duration</dt><dd id="iDur" class="mt-1 font-semibold text-[1.15rem]"></dd></div>
+</dl>
+
+<div class="mt-16 grid gap-14">
+<div class="grid grid-cols-1 md:grid-cols-[13rem_1fr] gap-4 md:gap-10"><h2 class="font-display font-bold text-xl text-gold">Overview</h2><p id="pOverview" class="text-[1.3rem] leading-relaxed text-[#d9d0bb] max-w-2xl"></p></div>
+<div class="rule"></div>
+<div class="grid grid-cols-1 md:grid-cols-[13rem_1fr] gap-4 md:gap-10"><h2 class="font-display font-bold text-xl text-gold">The challenge</h2><p id="pChallenge" class="text-[1.3rem] leading-relaxed text-[#d9d0bb] max-w-2xl"></p></div>
+<div class="rule"></div>
+<div class="grid grid-cols-1 md:grid-cols-[13rem_1fr] gap-4 md:gap-10"><h2 class="font-display font-bold text-xl text-gold">Our solution</h2><p id="pSolution" class="text-[1.3rem] leading-relaxed text-[#d9d0bb] max-w-2xl"></p></div>
+<div class="rule"></div>
+<div class="grid grid-cols-1 md:grid-cols-[13rem_1fr] gap-4 md:gap-10"><h2 class="font-display font-bold text-xl text-gold">The result</h2><ul id="pResults" class="tick grid gap-3 max-w-2xl"></ul></div>
+<div class="rule"></div>
+<div class="grid grid-cols-1 md:grid-cols-[13rem_1fr] gap-4 md:gap-10"><h2 class="font-display font-bold text-xl text-gold">Services provided</h2><div id="iServ" class="flex flex-wrap gap-3"></div></div>
+</div>
+
+<h2 class="mt-24 font-display font-bold text-2xl">More from our portfolio</h2>
+<div id="gallery" class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6"></div>
+
+<div class="mt-16 flex flex-wrap items-center gap-3">
+<span class="text-mute italic mr-2">Share this project</span>
+<a id="shFb" target="_blank" rel="noopener" aria-label="Share on Facebook" class="w-11 h-11 grid place-items-center text-gold border border-gold/40 rounded-full hover:bg-gold hover:text-night transition"><i class="fa-brands fa-facebook-f"></i></a>
+<a id="shIn" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="w-11 h-11 grid place-items-center text-gold border border-gold/40 rounded-full hover:bg-gold hover:text-night transition"><i class="fa-brands fa-linkedin-in"></i></a>
+<a id="shWa" target="_blank" rel="noopener" aria-label="Share on WhatsApp" class="w-11 h-11 grid place-items-center text-gold border border-gold/40 rounded-full hover:bg-gold hover:text-night transition"><i class="fa-brands fa-whatsapp"></i></a>
+<button id="shCopy" aria-label="Copy link" class="w-11 h-11 grid place-items-center text-gold border border-gold/40 rounded-full hover:bg-gold hover:text-night transition"><i class="fa-solid fa-link"></i></button>
+<span id="copied" class="hidden text-goldhi" role="status">Link copied</span>
+</div>
+
+<div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-5">
+<a id="prevLink" href="#" class="group block border-t border-line pt-5 hover:border-gold transition"><p class="text-mute italic"><i class="fa-solid fa-arrow-left mr-2 text-gold"></i>Previous project</p><p id="prevTitle" class="mt-2 font-display font-bold text-lg leading-snug group-hover:text-goldhi transition"></p></a>
+<a id="nextLink" href="#" class="group block border-t border-line pt-5 hover:border-gold transition sm:text-right"><p class="text-mute italic">Next project<i class="fa-solid fa-arrow-right ml-2 text-gold"></i></p><p id="nextTitle" class="mt-2 font-display font-bold text-lg leading-snug group-hover:text-goldhi transition"></p></a>
+</div>
+
+<div class="mt-20 frame" style="--cut:26px"><div class="p-9 sm:p-12 flex flex-col md:flex-row md:items-center justify-between gap-8">
+<div><h3 class="font-display font-bold text-2xl sm:text-3xl text-goldhi">Want a result like this?</h3><p class="mt-3 text-[1.2rem] text-mute max-w-lg">Tell us about your space or your brand and we will send a plan and a quote.</p></div>
+<a href="index.html#contact" class="btn-gold shrink-0">Start a project</a>
+</div></div>
+</div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="relative border-t border-line pt-20 overflow-hidden">
+<div class="max-w-7xl mx-auto px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] gap-12">
+<div>
+<a href="index.html#home" class="flex items-center gap-3"><span class="crest"><i class="fa-solid fa-crown"></i></span><span class="font-display font-bold text-xl tracking-widest text-ivory">AURUM STUDIO</span></a>
+<p class="mt-5 text-mute max-w-xs">A Dhaka design company building websites, brands and workspaces for businesses that want to look established from day one.</p>
+<div class="mt-6 flex gap-3"><a href="#" aria-label="Facebook" class="w-11 h-11 grid place-items-center text-gold border border-gold/40 rounded-full hover:bg-gold hover:text-night transition"><i class="fa-brands fa-facebook-f"></i></a><a href="#" aria-label="LinkedIn" class="w-11 h-11 grid place-items-center text-gold border border-gold/40 rounded-full hover:bg-gold hover:text-night transition"><i class="fa-brands fa-linkedin-in"></i></a><a href="#" aria-label="Instagram" class="w-11 h-11 grid place-items-center text-gold border border-gold/40 rounded-full hover:bg-gold hover:text-night transition"><i class="fa-brands fa-instagram"></i></a><a href="https://github.com/reehan3343" target="_blank" rel="noopener" aria-label="GitHub" class="w-11 h-11 grid place-items-center text-gold border border-gold/40 rounded-full hover:bg-gold hover:text-night transition"><i class="fa-brands fa-github"></i></a></div>
+</div>
+<div><h4 class="font-display font-bold text-gold text-lg">Explore</h4><ul class="mt-5 space-y-2.5"><li><a class="text-mute hover:text-goldhi transition" href="index.html#about">About</a></li><li><a class="text-mute hover:text-goldhi transition" href="index.html#services">Services</a></li><li><a class="text-mute hover:text-goldhi transition" href="index.html#blog">Blog</a></li><li><a class="text-mute hover:text-goldhi transition" href="index.html#projects">Projects</a></li><li><a class="text-mute hover:text-goldhi transition" href="index.html#portfolio">Portfolio</a></li><li><a class="text-mute hover:text-goldhi transition" href="index.html#pricing">Pricing</a></li><li><a class="text-mute hover:text-goldhi transition" href="index.html#contact">Contact</a></li></ul></div>
+<div><h4 class="font-display font-bold text-gold text-lg">Services</h4><ul class="mt-5 space-y-2.5 text-mute"><li>Web design and development</li><li>Brand identity</li><li>Digital marketing</li><li>UI and UX design</li><li>Workspace concepts</li></ul></div>
+<div><h4 class="font-display font-bold text-gold text-lg">Newsletter</h4><p class="mt-5 text-mute">One short design and business note a month.</p>
+<form id="nl" class="mt-4 flex items-end gap-3"><input required type="email" placeholder="Your email" aria-label="Email address" class="field !py-2 min-w-0 flex-1"><button class="btn-gold btn-sm">Subscribe</button></form></div>
+</div>
+<div class="mt-16 -mb-[.06em] wordmark" aria-hidden="true">AURUM</div>
+<!-- COPYRIGHT -->
+<div class="relative border-t border-line bg-night">
+<div class="max-w-7xl mx-auto px-5 py-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-mute">
+<p>&copy; <span id="year">2026</span> Aurum Studio. All rights reserved.</p>
+<p>Designed and built by Reehan</p>
+</div>
+</div>
+</footer>
+
+<!-- ================= BACK TO TOP + PROGRESS RING ================= -->
+<button id="toTop" aria-label="Back to top" class="fixed right-5 bottom-5 z-50 w-14 h-14 rounded-full bg-night grid place-items-center opacity-0 pointer-events-none translate-y-4 transition-all duration-300 shadow-xl">
+<svg class="absolute inset-0 -rotate-90" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="25" fill="none" stroke="rgba(242,194,48,.2)" stroke-width="3.5"/><circle id="ring" cx="28" cy="28" r="25" fill="none" stroke="#f2c230" stroke-width="3.5" stroke-linecap="round" style="stroke-dasharray:157.08;stroke-dashoffset:157.08"/></svg>
+<i class="fa-solid fa-arrow-up text-gold relative"></i></button>
+
+<script>
+/* ===== Shared behaviour: menu, scroll progress, back-to-top, scrollspy ===== */
+(function(){
+const page=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+const $=id=>document.getElementById(id);
+$('year').textContent=new Date().getFullYear();
+$('nl').addEventListener('submit',e=>{e.preventDefault();e.target.innerHTML='<p class="text-goldhi font-semibold">You are subscribed. Thank you.</p>'});
+const mm=$('mm'),mb=$('menuBtn');
+mb.addEventListener('click',()=>{const o=mm.classList.toggle('hidden');mb.setAttribute('aria-expanded',String(!o))});
+document.querySelectorAll('.m-a').forEach(a=>a.addEventListener('click',()=>{mm.classList.add('hidden');mb.setAttribute('aria-expanded','false')}));
+const hdr=$('hdr'),toTop=$('toTop'),ring=$('ring'),CIRC=157.08;
+const navs=[...document.querySelectorAll('.nav-a')];
+const isIndex=page==='index.html'||page==='';
+const secs=isIndex?[...document.querySelectorAll('main section[id]')]:[];
+const fixed=page.startsWith('blog_single')?'blog':page.startsWith('portfolio_single')?'portfolio':null;
+function onScroll(){
+const y=window.scrollY,max=document.documentElement.scrollHeight-window.innerHeight;
+ring.style.strokeDashoffset=CIRC*(1-(max>0?Math.min(y/max,1):0));
+hdr.classList.toggle('hdr-solid',y>20);
+const show=y>300;
+toTop.classList.toggle('opacity-0',!show);toTop.classList.toggle('pointer-events-none',!show);toTop.classList.toggle('translate-y-4',!show);
+let cur=fixed;
+if(secs.length){cur=secs[0].id;secs.forEach(s=>{if(y+170>=s.offsetTop)cur=s.id})}
+navs.forEach(a=>a.classList.toggle('on',a.dataset.s===cur))}
+window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);onScroll();
+toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+})();
+</script>
+<script>
+const $=id=>document.getElementById(id);
+// ---------- Portfolio data (item id = ?id=1 ... 6) ----------
+const ITEMS=[
+{id:1,cat:'Branding',title:'Minimal Gallery Wall',client:'Nova Art House',date:'Sep 2026',loc:'Dhaka, Bangladesh',dur:'3 weeks',serv:['Brand identity','Wall graphics','Print design'],
+lead:'A calm, gallery-style brand for an independent art house.',
+overview:'Nova Art House wanted a visual identity that felt as quiet and refined as the work it exhibits. We designed a minimal brand system and brought it to life on the gallery wall.',
+challenge:'The brand had to stay out of the way of the art while still being memorable. Too much colour or decoration would compete with the exhibitions.',
+solution:'We chose a soft neutral palette, one elegant typeface and generous white space. A single repeated dot motif became the signature across the wall, tickets and website.',
+results:['40% more visitors in the first two months','Brand guidelines adopted across print and web','Featured in a local design magazine']},
+{id:2,cat:'Workspace',title:'Boardroom Redesign',client:'Northwind Consulting',date:'Aug 2026',loc:'Gulshan, Dhaka',dur:'6 weeks',serv:['Interior concept','Furniture planning','Lighting'],
+lead:'A bright, confident boardroom made for big decisions.',
+overview:'Northwind Consulting needed a boardroom that impressed clients and helped their team think clearly. We redesigned the space from layout to lighting.',
+challenge:'The old room was dark, cramped and full of cables. Meetings felt rushed and the space did not match the quality of the firm.',
+solution:'We opened the layout around a long central table, added natural light, calm white surfaces and greenery, and hid all technology inside clean furniture.',
+results:['Meeting satisfaction scores up by 35%','Client presentations moved into the new room','Delivered on time and within budget']},
+{id:3,cat:'Branding',title:'Studio Entrance',client:'Lumen Photo Studio',date:'Jul 2026',loc:'Banani, Dhaka',dur:'4 weeks',serv:['Brand identity','Signage','Interior styling'],
+lead:'A warm, welcoming entrance that sets the tone for every shoot.',
+overview:'Lumen Photo Studio wanted clients to feel inspired the moment they walk in. We styled the entrance and aligned it with a fresh brand identity.',
+challenge:'The entrance was a narrow corridor with no personality, and first impressions were being lost before clients reached the studio floor.',
+solution:'Natural wood, soft light and curated framed prints turned the corridor into a small gallery, while clear signage guides every visitor.',
+results:['Bookings from referrals grew by 28%','The entrance became a popular photo spot','Consistent look across signage and social media']},
+{id:4,cat:'Workspace',title:'Café and Lounge Space',client:'Brew & Co.',date:'Jun 2026',loc:'Dhanmondi, Dhaka',dur:'8 weeks',serv:['Interior concept','Brand styling','Furniture selection'],
+lead:'A light, airy café where people stay a little longer.',
+overview:'Brew & Co. asked for a space that works for quick coffees, long meetings and quiet reading. We designed a flexible lounge with a distinct personality.',
+challenge:"The venue had to seat many guests without feeling crowded, and match the café's new, modern brand.",
+solution:'A mix of small round tables and cosy corners, light wooden floors, big windows and art-covered walls creates different moods in one room.',
+results:['Average visit time increased by 20 minutes','Weekend seating fully booked within a month',"The space became the brand's best marketing asset"]},
+{id:5,cat:'Branding',title:'Creative Office Brand Wall',client:'Pixel Forge',date:'May 2026',loc:'Uttara, Dhaka',dur:'3 weeks',serv:['Brand identity','Environmental graphics','Interior styling'],
+lead:'A bold feature wall that tells the story of a creative team.',
+overview:'Pixel Forge is a game studio with big ideas and a small office. We turned one wall into a living brand statement.',
+challenge:'The team wanted an energetic space on a modest budget, without making the office feel cluttered.',
+solution:"Geometric graphics in the studio's colours, floating shelves for awards and models, and bright accents against clean white walls.",
+results:['New hires mention the office in interviews','Used daily as a backdrop for client calls','Completed in under three weeks']},
+{id:6,cat:'Workspace',title:'Executive Meeting Suite',client:'Crown Capital',date:'Apr 2026',loc:'Motijheel, Dhaka',dur:'7 weeks',serv:['Interior concept','Furniture planning','Brand styling'],
+lead:'A refined meeting suite that reflects the confidence of a financial firm.',
+overview:'Crown Capital needed a meeting space that felt discreet, modern and trustworthy for high-value client conversations.',
+challenge:'The firm wanted to move away from a heavy, traditional look without losing its serious reputation.',
+solution:'A soft blush accent wall, a warm wooden table, dark leather chairs and subtle brand details strike a balance between modern and established.',
+results:['Clients describe the space as calm and professional','Meetings now run on schedule with no setup time','Design reused across two more offices']}
+];
+
+// ---------- Render item chosen by ?id= ----------
+const idx=Math.max(0,ITEMS.findIndex(p=>p.id===(+new URLSearchParams(location.search).get('id')||1)));
+const STOCK=["1524758631624-e2822e304c36", "1497366216548-37526070297c", "1497366811353-6870744d04b2", "1554118811-1e0d58224f24", "1556761175-5973dc0f32e7", "1560472354-b33ff0c44a43"];
+const P=ITEMS[idx],fbk=n=>'images/portfolio/'+n+'.jpg',img=n=>'https://images.unsplash.com/photo-'+STOCK[n-1]+'?auto=format&fit=crop&w=1400&q=70';
+document.title=P.title+' — Aurum Studio';
+$('crumb').textContent=P.title;$('pTitle').textContent=P.title;$('pLead').textContent=P.lead;
+$('pImg').onerror=function(){this.onerror=null;this.src=fbk(P.id)};$('pImg').src=img(P.id);$('pImg').alt=P.title;
+$('pOverview').textContent=P.overview;$('pChallenge').textContent=P.challenge;$('pSolution').textContent=P.solution;
+$('pResults').innerHTML=P.results.map(r=>'<li>'+r+'</li>').join('');
+$('iClient').textContent=P.client;$('iCat').textContent=P.cat;$('iDate').textContent=P.date;$('iLoc').textContent=P.loc;$('iDur').textContent=P.dur;
+$('iServ').innerHTML=P.serv.map(s=>'<span class="px-4 py-2 border border-gold/50 text-goldhi rounded-md">'+s+'</span>').join('');
+$('gallery').innerHTML=ITEMS.filter(p=>p.id!==P.id).slice(0,3).map(p=>`<a href="portfolio_single.html?id=${p.id}" class="pf"><div class="ph h-52" style="--cut:16px"><img src="${img(p.id)}" alt="${p.title}" loading="lazy" onerror="this.onerror=null;this.src='${fbk(p.id)}'"></div><h3 class="mt-3 font-display font-bold text-base">${p.title}</h3><p class="text-mute italic">${p.cat}</p></a>`).join('');
+const url=encodeURIComponent(location.href),ttl=encodeURIComponent(P.title);
+$('shFb').href='https://www.facebook.com/sharer/sharer.php?u='+url;
+$('shIn').href='https://www.linkedin.com/sharing/share-offsite/?url='+url;
+$('shWa').href='https://wa.me/?text='+ttl+'%20'+url;
+$('shCopy').addEventListener('click',()=>{
+(navigator.clipboard?navigator.clipboard.writeText(location.href):Promise.reject()).catch(()=>{}).finally(()=>{$('copied').classList.remove('hidden');setTimeout(()=>$('copied').classList.add('hidden'),1800)})});
+const prev=ITEMS[(idx+ITEMS.length-1)%ITEMS.length],next=ITEMS[(idx+1)%ITEMS.length];
+$('prevLink').href='portfolio_single.html?id='+prev.id;$('prevTitle').textContent=prev.title;
+$('nextLink').href='portfolio_single.html?id='+next.id;$('nextTitle').textContent=next.title;
+</script>
+</body>
+</html>

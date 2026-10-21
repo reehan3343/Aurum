@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reehan | App & Software Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { colors: { o: '#E8631F', ink: '#2b2b2b' }, fontFamily: { j: ['Jost', 'sans-serif'] } } } }</script>
+  <style>
+    html {
+      scroll-padding-top: 4rem
+    }
+    @media(min-width:1500px) {
+      body {
+        zoom: 1.15
+      }
+    }
+    @media(min-width:1700px) {
+      body {
+        zoom: 1.3
+      }
+    }
+    @media(min-width:1900px) {
+      body {
+        zoom: 1.45
+      }
+    }
+    .tag {
+      position: relative;
+      display: inline-block;
+      vertical-align: top;
+      height: 2.25em;
+      line-height: 2.25em;
+      padding-left: .9em;
+      color: #E8631F;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: .03em;
+      white-space: nowrap
+    }
+    .tag::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2.25em;
+      height: 2.25em;
+      pointer-events: none;
+      background: linear-gradient(#E8631F, #E8631F) top left/100% 1.5px, linear-gradient(#E8631F, #E8631F) bottom left/100% 1.5px, linear-gradient(#E8631F, #E8631F) top left/1.5px 100%, linear-gradient(#E8631F, #E8631F) top right/1.5px 22%, linear-gradient(#E8631F, #E8631F) bottom right/1.5px 22%;
+      background-repeat: no-repeat
+    }
+    #sBtn .ci {
+      display: none
+    }
+    #sBtn[aria-expanded=true] .si {
+      display: none
+    }
+    #sBtn[aria-expanded=true] .ci {
+      display: block
+    }
+    .nl {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 8px
+    }
+    @media(min-width:640px) {
+      .nl {
+        padding: 0 14px
+      }
+    }
+    .nl::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 3px;
+      border-radius: 2px;
+      background: #E8631F;
+      transform: scaleX(0);
+      transition: transform .25s
+    }
+    .nl:hover::after, .nl:focus-visible::after, .nl.on::after {
+      transform: scaleX(1)
+    }
+    #mMenu{position:fixed;top:0;left:0;bottom:0;width:280px;max-width:85vw;background:#18181c;color:#fff;z-index:60;transform:translateX(-100%);visibility:hidden;transition:transform .3s,visibility .3s;overflow-y:auto}
+#mMenu.open{transform:none;visibility:visible}
+#mOv{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:55;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+#mOv.open{opacity:1;visibility:visible}
+.ml{display:block;padding:12px 0;font-size:16px;transition:color .3s}
+.ml:hover{color:#E8631F}
+.ml.on::before{content:"";display:inline-block;width:20px;height:1px;background:currentColor;vertical-align:middle;margin-right:6px}
+#mBtn .ci{display:none}#mBtn[aria-expanded=true] .si{display:none}#mBtn[aria-expanded=true] .ci{display:block}
+@media(min-width:1024px){#mMenu,#mOv{display:none}}
+@media(prefers-reduced-motion:reduce){#mMenu,#mOv{transition:none}}
+#sBox{opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .3s,transform .3s,visibility .3s}#sBox.open{opacity:1;visibility:visible;transform:none}@media(prefers-reduced-motion:reduce){#sBox{transition:none}}
+.ph {
+      background: linear-gradient(135deg, #4a4a4a, #111)
+    }
+    .bgw {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 20px;
+      text-align: center;
+      font-weight: 600;
+      font-size: clamp(56px, 11vw, 140px);
+      color: #f5f5f5;
+      transform: rotate(-18deg);
+      pointer-events: none;
+      white-space: nowrap
+    }
+    .sec {
+      position: relative;
+      padding: 80px 20px;
+      overflow: hidden
+    }
+    .sec>* {
+      position: relative
+    }
+    .sec>.bgw {
+      position: absolute
+    }
+    .btn {
+      display: inline-block;
+      background: #2b2b2b;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 11px 22px
+    }
+    .btn {
+      transition: background-color .3s
+    }
+    .btn:hover, .btn:focus-visible {
+      background: #E8631F
+    }
+    .in {
+      width: 100%;
+      border: 1px solid #ddd;
+      background: #f5f5f5;
+      padding: 10px 12px;
+      font-size: 12px
+    }
+    .in:focus {
+      outline: none;
+      border-color: #E8631F;
+      background: #fff
+    }
+    @keyframes m {
+      to {
+        transform: translateX(-50%)
+      }
+    }
+    .mq {
+      animation: m 160s linear infinite;
+      width: max-content
+    }
+    @media(prefers-reduced-motion:reduce) {
+      .mq {
+        animation: none
+      }
+    }
+  </style>
+</head>
+<body class="font-j text-ink bg-white antialiased">
+  <header class="sticky top-0 z-50 bg-white border-b border-gray-200">
+    <div class="relative flex items-center justify-between px-5 h-16">
+      <button id="mBtn" type="button" class="lg:hidden w-10 h-9 rounded-md bg-o text-white grid place-items-center hover:bg-[#cf561a]" aria-label="Menu" aria-expanded="false" aria-controls="mMenu"><svg class="si" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16"/></svg><svg class="ci" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 4l12 12M16 4 4 16"/></svg></button>
+      <a href="#home" class="absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0 w-8 h-8 lg:w-6 lg:h-6 rounded-full bg-ink text-white grid place-items-center text-[11px] font-bold"
+        aria-label="Reehan home">R</a>
+      <nav aria-label="Main" class="hidden lg:block h-full">
+        <ul class="flex h-full text-[11px] font-medium">
+          <li><a href="#home" class="nl on" aria-current="location">Home</a></li>
+          <li><a href="#about" class="nl">About</a></li>
+          <li><a href="#services" class="nl">Service</a></li>
+          <li><a href="#projects" class="nl">Portfolio</a></li>
+          <li><a href="#blog" class="nl">Blog</a></li>
+          <li><a href="#contact" class="nl">Contact</a></li>
+        </ul>
+      </nav>
+      <button id="sBtn" type="button" class="text-gray-500" aria-label="Search" aria-expanded="false"
+        aria-controls="sBox"><svg class="si" width="14" height="14" viewBox="0 0 14 14" fill="none"
+          stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <circle cx="6" cy="6" r="5" />
+          <path d="m10 10 3 3" />
+        </svg><svg class="ci" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor"
+          stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+          <path d="M2 2l10 10M12 2 2 12" />
+        </svg></button>
+    </div>
+    <div id="mOv"></div><nav id="mMenu" aria-label="Mobile"><button id="mClose" type="button" aria-label="Close menu" class="absolute top-8 right-7 w-10 h-10 border border-white grid place-items-center"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M3 3l14 14M17 3 3 17"/></svg></button><ul class="pl-9 pr-6 pt-28 font-medium"><li><a href="#home" class="ml on">Home</a></li><li><a href="#about" class="ml">About</a></li><li><a href="#services" class="ml">Service</a></li><li><a href="#projects" class="ml">Portfolio</a></li><li><a href="#blog" class="ml">Blog</a></li><li><a href="#contact" class="ml">Contact</a></li></ul></nav>
+    <form id="sBox" role="search"
+      class="absolute right-5 top-full mt-3 w-[360px] max-w-[calc(100vw-2.5rem)] bg-white rounded-xl shadow-[0_10px_40px_rgba(0,0,0,.25)] p-8">
+      <label for="sIn" class="sr-only">Search</label>
+      <div class="flex items-center border border-gray-200 px-4 focus-within:border-o">
+        <input id="sIn" type="search" placeholder="Search here..."
+          class="flex-1 min-w-0 py-3 text-sm bg-transparent outline-none text-[#5f6f95] placeholder:text-[#5f6f95]">
+        <button class="text-gray-500" aria-label="Submit search"><svg width="18" height="18" viewBox="0 0 14 14"
+            fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+            <circle cx="6" cy="6" r="5" />
+            <path d="m10 10 3 3" />
+          </svg></button>
+      </div>
+    </form>
+  </header>
+
+  <div class="max-w-[1170px] mx-auto lg:border-x border-gray-200 relative">
+
+    <div
+      class="hidden xl:flex absolute -left-8 top-56 z-10 [writing-mode:vertical-rl] rotate-180 gap-3 text-[10px] tracking-wider items-center">
+      <a href="#" class="transition-colors duration-300 hover:text-o focus-visible:text-o">Facebook</a><span
+        class="w-px h-6 bg-o"></span><a href="#"
+        class="transition-colors duration-300 hover:text-o focus-visible:text-o">Twitter</a><span
+        class="w-px h-6 bg-o"></span><a href="#"
+        class="transition-colors duration-300 hover:text-o focus-visible:text-o">Instagram</a></div>
+
+    <!-- Hero -->
+    <section id="home" class="relative overflow-hidden px-5 pt-16 pb-12 lg:px-24">
+      <div
+        class="absolute top-6 left-6 lg:left-16 font-semibold text-[clamp(70px,16vw,200px)] leading-none text-[#f5f5f5] select-none"
+        aria-hidden="true">DEVELOPER</div>
+
+      <div class="relative grid md:grid-cols-2 gap-8 items-end">
+        <div class="pb-10">
+          <h1 class="text-4xl md:text-6xl font-semibold leading-tight">App &amp; Software Developer</h1>
+          <p class="mt-6 flex items-center gap-3 text-[11px] tracking-[.3em] text-gray-500">ROBERT MILLER <span
+              class="w-16 h-px bg-gray-400"></span></p>
+          <a href="#contact" class="btn mt-6">Contact Me</a>
+        </div>
+        <img src="images/reehan.png" alt="Reehan" class="hidden md:block relative -mb-12 w-full max-w-[300px] md:max-w-[340px] md:ml-auto h-auto">
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="px-5 py-16 lg:px-24 grid md:grid-cols-2 gap-10 items-center">
+      <div class="relative">
+        <div class="h-[340px] w-full max-w-[330px] bg-[#f1f1f1] overflow-hidden"><img src="images/reehan.png" alt="Reehan" class="w-full h-full object-cover object-top"></div>
+        <div
+          class="absolute -bottom-6 left-[158px] sm:left-56 bg-gradient-to-br from-black/80 to-gray-600/60 backdrop-blur-md rounded-md text-white w-32 h-32 grid place-content-center text-center">
+          <b class="text-4xl font-semibold">2+</b><span class="text-[10px]">Years Experience</span></div>
+      </div>
+      <div>
+        <span class="tag">About Me</span>
+        <h2 class="mt-5 text-3xl font-medium leading-tight">Welcome to Reehan, Best Software Services</h2>
+        <p class="mt-3 text-sm font-medium text-gray-600">I have 2+ years of experiences in Software Development for
+          give you better services.</p>
+        <p class="mt-3 text-xs leading-6 text-gray-500">A wonderful serenity has taken possession of my entire soul,
+          like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of
+          existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so
+          absorbed in the exquisite</p>
+        <div class="mt-6 flex gap-8">
+          <div><b class="text-3xl text-o font-medium">500+</b>
+            <p class="text-[10px] text-gray-500">Projects Completed</p>
+          </div>
+          <div><b class="text-3xl text-o font-medium">52+</b>
+            <p class="text-[10px] text-gray-500">Awards Win</p>
+          </div>
+          <div><b class="text-3xl text-o font-medium">2M+</b>
+            <p class="text-[10px] text-gray-500">Happy clients</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="sec text-center">
+      <div class="bgw" aria-hidden="true">SERVICES</div>
+      <span class="tag">Check Services</span>
+      <h2 class="mt-5 text-3xl font-medium">My Best Services</h2>
+      <div id="svc" class="mt-12 max-w-4xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 bg-[#f5f5f5] text-left"></div>
+    </section>
+  </div>
+
+  <!-- Marquee -->
+  <div class="bg-[#f5f5f5] py-6" aria-hidden="true">
+    <div class="max-w-[1170px] mx-auto px-12">
+      <div class="overflow-hidden">
+        <div id="mq" class="mq flex whitespace-nowrap text-[28px] font-medium leading-[40px]"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-[1170px] mx-auto lg:border-x border-gray-200">
+    <!-- Projects -->
+    <section id="projects" class="sec text-center">
+      <div class="bgw" aria-hidden="true">PROJECTS</div>
+      <span class="tag">Projects</span>
+      <h2 class="mt-5 text-3xl font-medium">My Latest Project</h2>
+      <div id="prj" class="mt-10 max-w-4xl mx-auto grid sm:grid-cols-3 gap-5 text-left"></div>
+      <a href="#projects" class="btn mt-10">View All Work</a>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="sec text-center">
+      <div class="bgw" aria-hidden="true">REVIEW</div>
+      <span class="tag">Testimonials</span>
+      <h2 class="mt-5 text-3xl font-medium">What My Clients Say.</h2>
+      <div id="tst" class="mt-10 max-w-4xl mx-auto grid md:grid-cols-3 gap-5 text-left"></div>
+    </section>
+
+    <!-- Blog -->
+    <section id="blog" class="sec text-center">
+      <div class="bgw" aria-hidden="true">LATEST BLOG</div>
+      <span class="tag">Latest Blog</span>
+      <h2 class="mt-5 text-3xl font-medium">My Latest News</h2>
+      <div id="blg" class="mt-10 max-w-4xl mx-auto grid md:grid-cols-3 gap-5 text-left"></div>
+      <a href="#blog" class="btn mt-10">View All Blog</a>
+    </section>
+
+    <!-- Pricing -->
+    <section class="sec text-center">
+      <div class="bgw" aria-hidden="true">PRICING</div>
+      <span class="tag">Pricing</span>
+      <h2 class="mt-5 text-3xl font-medium">My Pricing Plan</h2>
+      <div id="prc" class="mt-12 max-w-4xl mx-auto grid md:grid-cols-3 gap-5"></div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="sec">
+      <div class="bgw" aria-hidden="true">MESSAGE</div>
+      <form id="cf" class="max-w-4xl mx-auto bg-[#f5f5f5] px-6 md:px-24 py-14">
+        <h2 class="text-3xl font-medium text-center">Send Me A Message</h2>
+        <p class="text-center text-[11px] text-gray-500 mt-2">Your email address will not be published. All fields are
+          required</p>
+        <div class="grid sm:grid-cols-2 gap-4 mt-8">
+          <label class="text-[10px]">Name*<input class="in mt-1" required placeholder="Your Name"></label>
+          <label class="text-[10px]">Email*<input class="in mt-1" type="email" required
+              placeholder="Your Email"></label>
+        </div>
+        <label class="block mt-4 text-[10px]">Message*<textarea class="in mt-1" rows="4" required
+            placeholder="Message"></textarea></label>
+        <div class="mt-6 flex flex-wrap items-center gap-6">
+          <button class="btn">Submit Now</button>
+          <span class="flex items-center gap-2 text-[11px] text-gray-500"><span
+              class="w-6 h-6 shrink-0 rounded-full border border-o bg-o/20 grid place-items-center text-o"
+              aria-hidden="true"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                stroke-width="1.1" stroke-linejoin="round">
+                <path
+                  d="M3 2h3l1.5 3.5-1.8 1.1a8 8 0 0 0 3.7 3.7l1.1-1.8L15 10v3a1 1 0 0 1-1 1A12 12 0 0 1 2 3a1 1 0 0 1 1-1z" />
+              </svg></span><a href="tel:+8801796120720">+8801796120720</a></span>
+          <span class="flex items-center gap-2 text-[11px] text-gray-500"><span
+              class="w-6 h-6 shrink-0 rounded-full border border-o bg-o/20 grid place-items-center text-o"
+              aria-hidden="true"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                stroke-width="1.1" stroke-linejoin="round">
+                <rect x="1.5" y="3.5" width="13" height="9" rx="1" />
+                <path d="m2 4.5 6 4.5 6-4.5" />
+              </svg></span><a href="mailto:reehanbest57@gmail.com">reehanbest57@gmail.com</a></span>
+        </div>
+        <p id="ok" class="hidden mt-4 text-o text-sm font-medium" role="status">Thanks! Your message has been sent.</p>
+      </form>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-[#f5f5f5] text-center py-14">
+    <a href="#home" class="mx-auto w-9 h-9 rounded-full bg-ink text-white grid place-items-center font-bold"
+      aria-label="Reehan home">R</a>
+    <div class="mt-5 flex justify-center gap-2.5"><a href="#"
+        class="w-7 h-7 rounded-full border border-gray-300 grid place-items-center text-[#5f6f95] transition-colors duration-300 hover:bg-o hover:border-o hover:text-white"
+        aria-label="Facebook"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M14 8V6.5c0-.7.3-1 1-1h1.5V2H14c-2.5 0-4 1.6-4 4v2H7.5v3.5H10V22h4V11.5h2.4L17 8z" />
+        </svg></a><a href="#"
+        class="w-7 h-7 rounded-full border border-gray-300 grid place-items-center text-[#5f6f95] transition-colors duration-300 hover:bg-o hover:border-o hover:text-white"
+        aria-label="Twitter"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+        </svg></a><a href="#"
+        class="w-7 h-7 rounded-full border border-gray-300 grid place-items-center text-[#5f6f95] transition-colors duration-300 hover:bg-o hover:border-o hover:text-white"
+        aria-label="LinkedIn"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M4 9h3.5v11H4zM5.75 3.5a2 2 0 110 4 2 2 0 010-4zM10 9h3.4v1.5c.5-.9 1.7-1.8 3.5-1.8 3.6 0 4.1 2.4 4.1 5.4V20h-3.5v-5.2c0-1.3 0-2.9-1.8-2.9s-2.1 1.4-2.1 2.8V20H10z" />
+        </svg></a><a href="#"
+        class="w-7 h-7 rounded-full border border-gray-300 grid place-items-center text-[#5f6f95] transition-colors duration-300 hover:bg-o hover:border-o hover:text-white"
+        aria-label="Pinterest"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z" />
+        </svg></a><a href="#"
+        class="w-7 h-7 rounded-full border border-gray-300 grid place-items-center text-[#5f6f95] transition-colors duration-300 hover:bg-o hover:border-o hover:text-white"
+        aria-label="Vimeo"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M23.977 6.416c-.105 2.338-1.739 5.543-4.894 9.609-3.268 4.247-6.026 6.37-8.29 6.37-1.409 0-2.578-1.294-3.553-3.881L5.322 11.4C4.603 8.816 3.834 7.522 3.01 7.522c-.179 0-.806.378-1.881 1.132L0 7.197c1.185-1.044 2.351-2.084 3.501-3.128C5.08 2.701 6.266 1.984 7.055 1.91c1.867-.18 3.016 1.1 3.447 3.838.465 2.953.789 4.789.971 5.507.539 2.45 1.131 3.674 1.776 3.674.502 0 1.256-.796 2.265-2.385 1.004-1.589 1.54-2.797 1.612-3.628.144-1.371-.395-2.061-1.614-2.061-.574 0-1.167.121-1.777.391 1.186-3.868 3.434-5.757 6.762-5.637 2.473.06 3.628 1.664 3.493 4.797l-.013.01z" />
+        </svg></a></div>
+    <p class="mt-5 text-[11px] text-gray-500">&copy; 2026. All rights reserved by Reehan.</p>
+  </footer>
+  <a href="#home"
+    class="group fixed bottom-4 right-4 w-10 h-10 rounded-full bg-ink border-2 border-white/20 text-white grid place-items-center z-40"
+    aria-label="Back to top"><svg class="transition-transform duration-300 group-hover:-translate-y-0.5" width="18"
+      height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+      stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg></a>
+
+  <script>
+    const $ = (i, h) => document.getElementById(i).innerHTML = h;
+    const lorem = 'A wonderful serenity has taken possession of my entire soul, like these sweet mornings.';
+    const P = ['<path d="M8 8h32M24 12 15 28l9 8 9-8z"/><circle cx="8" cy="8" r="2"/><circle cx="24" cy="8" r="2"/><circle cx="40" cy="8" r="2"/><circle cx="24" cy="25" r="2"/><path d="M24 36v6M19 42h10"/>', '<rect x="10" y="4" width="22" height="38" rx="3"/><path d="M17 8h8M14 15h14M14 20h9"/><circle cx="21" cy="37" r="1.2"/><path d="M31 41V26a2.5 2.5 0 0 1 5 0v6l5 1.5V39c0 3-2 5-5 5h-3z"/>', '<path d="M24 6C13 6 5 14 5 24s8 18 18 18c3 0 4-2 3-4s0-4 3-4h5c4 0 6-3 6-7C40 14 33 6 24 6z"/><circle cx="14" cy="23" r="2.4"/><circle cx="19" cy="14" r="2.4"/><circle cx="29" cy="13" r="2.4"/><circle cx="14" cy="32" r="2.4"/>', '<path d="M6 22 18 13l9 6 15-12M36 7h6v6"/><rect x="6" y="30" width="8" height="13" fill="currentColor"/><rect x="18" y="25" width="8" height="18" fill="currentColor"/><rect x="30" y="18" width="8" height="25" fill="currentColor"/><circle cx="6" cy="22" r="1.8" fill="currentColor"/><circle cx="18" cy="13" r="1.8" fill="currentColor"/><circle cx="27" cy="19" r="1.8" fill="currentColor"/>'];
+    const ic = i => `<div class="relative h-[52px] text-o transition-colors duration-300 group-hover:text-white"><i class="absolute left-[15px] top-2.5 w-8 h-8 rounded-full bg-black/[.06] transition-colors duration-300 group-hover:bg-white/10"></i><svg class="absolute left-0 top-2" width="36" height="36" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[i]}</svg></div>`;
+    $('svc', ['Website Design', 'Mobile App Design', 'Brand Identity', 'Market Analysis'].map((t, i) => `<div class="group p-6 border-r border-white transition-colors duration-300 hover:bg-ink">${ic(i)}<h3 class="mt-4 text-sm font-medium transition-colors duration-300 group-hover:text-white">${t}</h3><p class="mt-2 text-[10px] leading-5 text-gray-400 transition-colors duration-300 group-hover:text-gray-300">${lorem}</p><span class="mt-5 w-6 h-6 bg-gray-400 text-white grid place-items-center text-xs cursor-pointer transition-colors duration-300 hover:bg-o">&searr;</span></div>`).join(''));
+    const tx = 'I always try to put my best service to my client . '; $('mq', `<span>${tx.repeat(8)}</span><span>${tx.repeat(8)}</span>`);
+    $('prj', [['WEB DESIGN', 'Business Website Design', 'images/project/1.png'], ['WEB DEVELOPMENT', 'Food Website Design', 'images/project/2.png'], ['WEB DESIGN', 'Creative Website Design', 'images/project/3.png']].map(([c, t, img]) => `<article class="group cursor-pointer bg-white border border-gray-100"><div class="overflow-hidden"><div class="ph h-80 transition duration-500 motion-reduce:transition-none group-hover:scale-110 group-hover:grayscale"><img src="${img}" alt="${t}" class="w-full h-full object-cover"></div></div><div class="p-4"><p class="text-[8px] tracking-widest text-gray-400">${c}</p><h3 class="text-xs font-medium mt-1">${t}</h3></div></article>`).join(''));
+    const q = 'To begin to identify aspects of students’ own portfolios To identify key portfolio features, varied styles, and organizational schemes; that will need careful attention.';
+    $('tst', ['MARRY JENEFER', 'ELIZABETH MARVEL', 'MARRY JENEFER'].map(n => `<blockquote class="bg-[#f5f5f5] p-5"><p class="text-[11px] italic leading-5 text-gray-600">“${q}”</p><footer class="mt-4 flex items-center gap-6 text-[9px] text-gray-500"><span>— ${n}</span><svg width="38" height="28" viewBox="0 0 40 30" fill="none" stroke="#6b7a9b" stroke-width="3" stroke-linecap="round" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="M16.5 10c0 8-4 13-10 16"/><circle cx="30" cy="10" r="6.5"/><path d="M36.5 10c0 8-4 13-10 16"/></svg></footer></blockquote>`).join(''));
+    $('blg', [['DESIGNER', '25 Dec, 2026', 'Marilou', 'Helpful tips for become a successful designer', '#5a3a22', 'images/blog/1.png'], ['DEVELOPER', '13 Dec,2026', 'Konal', 'Master These Awesome New Skills in May 2026', '#1f3550', 'images/blog/2.png'], ['FASHION', '22 Dec,2026', 'Aliza', 'We provide solutions growing your business', '#1c3d36', 'images/blog/3.png']].map(([b, d, a, t, c, img]) => `<article class="group cursor-pointer bg-white border border-gray-100 p-2"><div class="relative h-36 overflow-hidden" style="background:${c}"><img src="${img}" alt="${t}" class="absolute inset-0 w-full h-full object-cover transition duration-500 motion-reduce:transition-none group-hover:scale-110 group-hover:grayscale"><span class="absolute top-2 left-2 bg-o text-white text-[8px] px-2 py-0.5">${b}</span></div><div class="p-3 pb-6"><p class="text-[11px] tracking-wide text-o">${d}<span class="mx-2">•</span>By ${a}</p><h3 class="mt-2.5 text-[18px] font-semibold leading-[1.4]">${t}</h3><p class="mt-3 text-xs leading-[1.7] tracking-wide text-gray-500">Consectetur adipiscing elit. Purusout phasellus malesuada lectus.</p></div></article>`).join(''));
+    $('prc', [['BASIC', 120], ['PREMIUM', 210], ['ADVANCED', 373]].map(([n, p]) => `<div class="relative bg-[#f5f5f5] pt-10 pb-8 px-6"><span class="absolute top-0 left-1/2 -translate-x-1/2 bg-ink text-white text-[9px] font-semibold tracking-wide px-5 py-1 rounded-b-lg">${n}</span><p><b class="text-3xl font-medium">$${p}</b><span class="text-[8px] text-gray-500">/PER MONTH</span></p><p class="mt-2 text-[10px] text-gray-500">Consectetur adipiscing elit. Purusout phasellus.</p><ul class="mt-6 space-y-2 text-[10px] text-gray-500"><li>Web App design</li><li>Software Development</li><li>3D Animation Add</li><li>Web Development</li><li>Graphic Design</li></ul><a href="#contact" class="inline-block mt-6 border border-o text-o text-[10px] px-4 py-1.5 transition-colors duration-300 hover:bg-o hover:text-white">Choose Plan</a></div>`).join(''));
+    document.getElementById('cf').addEventListener('submit', e => { e.preventDefault(); e.target.reset(); document.getElementById('ok').classList.remove('hidden') });
+
+    const sb = document.getElementById('sBtn'), sx = document.getElementById('sBox'), si = document.getElementById('sIn');
+    const tog = o => { sx.classList.toggle('open', o); sb.setAttribute('aria-expanded', o); if (o) setTimeout(() => si.focus(), 50) };
+    sb.addEventListener('click', e => { e.stopPropagation(); mtog(false); tog(!sx.classList.contains('open')) });
+    document.addEventListener('click', e => { if (!sx.contains(e.target)) tog(false) });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { tog(false); sb.focus() } });
+    sx.addEventListener('submit', e => { e.preventDefault(); const q = si.value.trim(); tog(false); if (q && window.find) window.find(q) });
+
+    const nls = [...document.querySelectorAll('.nl, .ml')];
+    const setOn = id => nls.forEach(a => { const on = a.getAttribute('href') === '#' + id; a.classList.toggle('on', on); on ? a.setAttribute('aria-current', 'location') : a.removeAttribute('aria-current') });
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) setOn(e.target.id) }), { rootMargin: '-45% 0px -50% 0px' });
+    nls.forEach(a => { const t = document.querySelector(a.getAttribute('href')); t && io.observe(t) });
+  
+    const mb = document.getElementById('mBtn'), mm = document.getElementById('mMenu'), mo = document.getElementById('mOv'), mc = document.getElementById('mClose');
+    const mtog = o => { mm.classList.toggle('open', o); mo.classList.toggle('open', o); mb.setAttribute('aria-expanded', o); document.body.style.overflow = o ? 'hidden' : ''; if (o) setTimeout(() => mc.focus(), 50) };
+    mc.addEventListener('click', () => { mtog(false); mb.focus() });
+    mb.addEventListener('click', e => { e.stopPropagation(); const w = !mm.classList.contains('open'); if (w) tog(false); mtog(w) });
+    mm.addEventListener('click', e => { if (e.target.closest('a')) mtog(false) });
+    document.addEventListener('click', e => { if (!mm.contains(e.target)) mtog(false) });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') mtog(false) });
+    matchMedia('(min-width:1024px)').addEventListener('change', () => mtog(false));
+</script>
+</body>
+</html>
